@@ -1,90 +1,72 @@
-@extends('layouts.modernize')
+@extends('layouts.admin')
 @section('title', 'Edit Data Solusi')
 
 @section('content')
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12">
-                <div class="card bg-info-subtle shadow-none position-relative overflow-hidden mb-4">
-                    <div class="card-body px-4 py-3">
-                        <div class="row align-items-center">
-                            <div class="col-9">
-                                <h4 class="fw-semibold mb-8">Edit Data Solusi</h4>
-                                <nav aria-label="breadcrumb">
-                                    <ol class="breadcrumb">
-                                        <li class="breadcrumb-item">
-                                            <a class="text-muted text-decoration-none"
-                                               href="{{ route('dashboard') }}">Dashboard</a>
-                                        </li>
-                                        <li class="breadcrumb-item">
-                                            <a class="text-muted text-decoration-none"
-                                               href="{{ route('solusi.index') }}">Data Solusi</a>
-                                        </li>
-                                        <li class="breadcrumb-item">
-                                            <a class="text-muted text-decoration-none"
-                                               href="{{ route('solusi.show', $solusi) }}">{{ $solusi->kode }}</a>
-                                        </li>
-                                        <li class="breadcrumb-item" aria-current="page">Edit Data</li>
-                                    </ol>
-                                </nav>
+    <main class="container-fluid px-6 pb-10">
+        <form action="{{ route('admin.solusi.update', $solusi) }}" method="post" enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
+
+            <header class="py-4 border-bottom">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <div class="d-flex align-items-center gap-4">
+                            <div>
+                                <a href="{{ route('admin.solusi.show', $solusi) }}" class="btn-close text-xs"></a>
                             </div>
-                            <div class="col-3">
-                                <div class="text-center mb-n5">
-                                    <img src="{{ asset('assets/themes/modernize/images/backgrounds/ChatBc.png') }}"
-                                         alt="Edit Data Solusi" class="img-fluid mb-n4">
-                                </div>
-                            </div>
+                            <div class="vr opacity-20 my-1"></div>
+                            <h1 class="h4 ls-tight">Edit Data Solusi</h1>
+                        </div>
+                    </div>
+                    <div class="col-auto d-none d-md-block">
+                        <div class="hstack gap-2 justify-content-end">
+                            <button type="submit" class="btn btn-sm btn-primary">
+                                <span>Simpan</span>
+                            </button>
                         </div>
                     </div>
                 </div>
+            </header>
 
-                <div class="card">
-                    <div class="px-4 py-3 border-bottom d-flex justify-content-between">
-                        <h5 class="card-title fw-semibold mb-0">Data Solusi</h5>
+            <div class="row align-items-center mt-5">
+                <div class="col-md-2">
+                    <label class="form-label">Solusi</label>
+                </div>
+                <div class="col-md-8 col-xl-5">
+                    <div class="">
+                        <input type="text" name="solusi" value="{{ old('solusi', $solusi->solusi) }}"
+                               class="form-control @error('solusi') is-invalid @enderror" required>
 
-                        <a href="{{ route('solusi.show', $solusi) }}" class="btn btn-sm btn-primary">
-                            <i class="ti ti-arrow-left"></i> Kembali
-                        </a>
+                        @error('solusi')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
-
-                    <form action="{{ route('solusi.update', $solusi) }}" method="post">
-                        @csrf
-                        @method('put')
-
-                        <div class="card-body p-4">
-                            <div class="mb-4">
-                                <label class="form-label fw-semibold">Kode</label>
-                                <input type="text" name="kode" value="{{ old('kode', $solusi->kode) }}"
-                                       class="form-control @error('kode') is-invalid @enderror" required>
-
-                                @error('kode')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                                @enderror
-                            </div>
-
-                            <div class="mb-4">
-                                <label class="form-label fw-semibold">Solusi</label>
-                                <textarea name="solusi"
-                                          class="form-control @error('solusi') is-invalid @enderror"
-                                          required>{{ old('solusi', $solusi->solusi) }}</textarea>
-
-                                @error('solusi')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="card-footer d-flex justify-content-end">
-                            <div class="d-flex justify-content-end">
-                                <button class="btn btn-primary">Simpan</button>
-                            </div>
-                        </div>
-                    </form>
                 </div>
             </div>
-        </div>
-    </div>
+
+            <hr class="my-6">
+
+            <div class="row align-items-center mt-5">
+                <div class="col-md-2">
+                    <label class="form-label">Kode</label>
+                </div>
+                <div class="col-md-8 col-xl-5">
+                    <div class="">
+                        <input type="text" name="kode" value="{{ old('kode', $solusi->kode) }}"
+                               class="form-control @error('kode') is-invalid @enderror" required>
+
+                        @error('kode')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+            </div>
+
+            <hr class="my-6">
+            <div class="d-flex d-md-none justify-content-end gap-2">
+                <button type="submit" class="btn btn-sm btn-primary">Simpan</button>
+            </div>
+
+        </form>
+    </main>
 @endsection

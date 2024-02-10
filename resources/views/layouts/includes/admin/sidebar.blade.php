@@ -63,6 +63,13 @@
                         <span>Gejala</span>
                     </a>
                 </li>
+
+                <li class="nav-item my-1">
+                    <a class="nav-link d-flex align-items-center rounded-pill {{ activeClass('admin.solusi.*') }}" href="{{ route('admin.solusi.index') }}">
+                        <i class="bi bi-check-square-fill"></i>
+                        <span>Solusi</span>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

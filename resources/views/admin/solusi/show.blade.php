@@ -1,82 +1,60 @@
-@extends('layouts.modernize')
+@extends('layouts.admin')
 @section('title', 'Data Solusi')
 
 @section('content')
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12">
-                <div class="card bg-info-subtle shadow-none position-relative overflow-hidden mb-4">
-                    <div class="card-body px-4 py-3">
-                        <div class="row align-items-center">
-                            <div class="col-9">
-                                <h4 class="fw-semibold mb-8">Data Solusi</h4>
-                                <nav aria-label="breadcrumb">
-                                    <ol class="breadcrumb">
-                                        <li class="breadcrumb-item">
-                                            <a class="text-muted text-decoration-none"
-                                               href="{{ route('dashboard') }}">Dashboard</a>
-                                        </li>
-                                        <li class="breadcrumb-item">
-                                            <a class="text-muted text-decoration-none"
-                                               href="{{ route('solusi.index') }}">Data Solusi</a>
-                                        </li>
-                                        <li class="breadcrumb-item" aria-current="page">{{ $solusi->kode }}</li>
-                                    </ol>
-                                </nav>
-                            </div>
-                            <div class="col-3">
-                                <div class="text-center mb-n5">
-                                    <img src="{{ asset('assets/themes/modernize/images/backgrounds/ChatBc.png') }}"
-                                         alt="Lihat Data Solusi" class="img-fluid mb-n4">
-                                </div>
-                            </div>
+    <main class="container-fluid px-6 pb-10">
+        <header class="py-4 border-bottom">
+            <div class="row align-items-center">
+                <div class="col">
+                    <div class="d-flex align-items-center gap-4">
+                        <div>
+                            <a href="{{ route('admin.solusi.index') }}" class="btn-close text-xs"></a>
                         </div>
+                        <div class="vr opacity-20 my-1"></div>
+                        <h1 class="h4 ls-tight">{{ $solusi->kode }}</h1>
                     </div>
                 </div>
-
-                <div class="card w-100 position-relative overflow-hidden">
-                    <div class="px-4 py-3 border-bottom d-flex justify-content-between">
-                        <h5 class="card-title fw-semibold mb-0">Data Solusi</h5>
-
-                        <a href="{{ route('solusi.index') }}" class="btn btn-sm btn-primary">
-                            <i class="ti ti-arrow-left"></i> Kembali
+                <div class="col-auto d-none d-md-block">
+                    <div class="hstack gap-2 justify-content-end">
+                        <a href="{{ route('admin.solusi.edit', $solusi) }}" class="btn btn-sm btn-warning text-white">
+                            <span>Edit</span>
                         </a>
-                    </div>
-
-                    <div class="card-body p-4">
-                        <div class="table-responsive rounded-2 mb-4">
-                            <table class="table border text-nowrap customize-table mb-0 align-middle">
-                                <tbody>
-                                <tr>
-                                    <th scope="row">Kode</th>
-                                    <td>:</td>
-                                    <td><strong>{{ $solusi->kode }}</strong></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Solusi</th>
-                                    <td>:</td>
-                                    <td><strong>{{ $solusi->solusi }}</strong></td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="card-footer d-flex justify-content-end gap-1">
-                        <a href="{{ route('solusi.edit', $solusi) }}" class="btn btn-warning">
-                            <i class="ti ti-pencil"></i> Edit
-                        </a>
-                        <a href="#" class="btn btn-danger btn-delete">
-                            <i class="ti ti-trash"></i> Hapus
+                        <a href="#" class="btn btn-sm btn-danger text-white btn-delete">
+                            <span>Hapus</span>
                         </a>
                     </div>
                 </div>
             </div>
+        </header>
+
+        <div class="table-responsive">
+            <table class="table table-condensed table-hover">
+                <tr>
+                    <th>Solusi</th>
+                    <td>{{ $solusi->solusi }}</td>
+                </tr>
+                <tr>
+                    <th>Kode</th>
+                    <td>{{ $solusi->kode }}</td>
+                </tr>
+            </table>
         </div>
-    </div>
+
+        <div class="d-flex d-md-none justify-content-end gap-2">
+            <div class="hstack gap-2 justify-content-end">
+                <a href="{{ route('admin.solusi.edit', $solusi) }}" class="btn btn-sm btn-warning text-white">
+                    <span>Edit</span>
+                </a>
+                <a href="#" class="btn btn-sm btn-danger text-white btn-delete">
+                    <span>Hapus</span>
+                </a>
+            </div>
+        </div>
+    </main>
 @endsection
 
 @section('custom_html')
-    <form action="{{ route('solusi.destroy', $solusi) }}" method="post" id="delete-form">
+    <form action="{{ route('admin.solusi.destroy', $solusi) }}" method="post" id="delete-form">
         @csrf
         @method('DELETE')
     </form>
@@ -88,25 +66,25 @@
     </script>
 
     <script>
-        let btnDelete = document.querySelector('.btn-delete');
+        let btnDelete = document.querySelectorAll('.btn-delete');
         let deleteForm = document.querySelector('#delete-form');
 
-        btnDelete.addEventListener('click', function (e) {
-            e.preventDefault();
+        btnDelete.forEach(btn => {
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
 
-            Swal.fire({
-                title: 'Hapus Data?',
-                text: "Yakin ingin menghapus data ini? Data yang sudah dihapus tidak dapat dikembalikan.",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#d33',
-                cancelButtonColor: '#3085d6',
-                confirmButtonText: 'Hapus',
-                cancelButtonText: 'Batal',
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    deleteForm.submit();
-                }
+                Swal.fire({
+                    title: 'Hapus Data?',
+                    text: "Yakin ingin menghapus data ini? Data yang sudah dihapus tidak dapat dikembalikan.",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Hapus',
+                    cancelButtonText: 'Batal',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        deleteForm.submit();
+                    }
+                });
             });
         });
     </script>
