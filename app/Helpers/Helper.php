@@ -1,5 +1,7 @@
 <?php
 
+use App\Enums\UserRole;
+
 if (!function_exists('activeClass')) {
     /**
      * Return active class if current route is equal to given route
@@ -31,5 +33,22 @@ if (!function_exists('activeClass')) {
         }
 
         return '';
+    }
+}
+
+if (!function_exists('getDashboardUrl')) {
+    /**
+     * Get dashboard url based on user role
+     *
+     * @param $role
+     * @return string
+     */
+    function getDashboardUrl($role = null): string
+    {
+        $role = $role ?? auth()->user()->role;
+
+        return match ($role) {
+            UserRole::ADMIN->value => route('admin.dashboard'),
+        };
     }
 }

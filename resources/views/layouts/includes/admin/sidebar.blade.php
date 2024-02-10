@@ -6,7 +6,7 @@
                 aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand d-inline-block py-lg-1 mb-lg-5" href="{{ route('admin.dashboard') }}">
+        <a class="navbar-brand d-inline-block py-lg-1 mb-lg-5" href="{{ route('home') }}">
             <img src="{{ asset('assets/themes/satoshi/img/logo-dark.svg') }}" class="logo-dark h-rem-8 h-rem-md-10"
                  alt="...">
             <img src="{{ asset('assets/themes/satoshi/img/logo-light.svg') }}" class="logo-light h-rem-8 h-rem-md-10"
