@@ -71,6 +71,7 @@
 <script src="{{ asset('assets/themes/satoshi/js/main.js') }}"></script>
 <script src="{{ asset('assets/themes/satoshi/js/switcher.js') }}"></script>
 
+<!-- Plugins -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>

@@ -130,26 +130,26 @@
     </script>
 
     @if(auth()->user()->profile_picture)
-    <script>
-        let removeProfilePictureButton = document.querySelector('.btn-remove-profile-picture');
-        let deleteProfilePictureForm = document.querySelector('#delete-profile-picture-form');
+        <script>
+            let removeProfilePictureButton = document.querySelector('.btn-remove-profile-picture');
+            let deleteProfilePictureForm = document.querySelector('#delete-profile-picture-form');
 
-        removeProfilePictureButton.addEventListener('click', function (e) {
-            e.preventDefault();
+            removeProfilePictureButton.addEventListener('click', function (e) {
+                e.preventDefault();
 
-            Swal.fire({
-                title: 'Apakah Anda yakin?',
-                text: 'Yakin ingin menghapus foto profil? Tindakan ini tidak dapat dibatalkan.',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Ya, hapus!',
-                cancelButtonText: 'Batal'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    deleteProfilePictureForm.submit();
-                }
+                Swal.fire({
+                    title: 'Apakah Anda yakin?',
+                    text: 'Yakin ingin menghapus foto profil? Tindakan ini tidak dapat dibatalkan.',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Ya, hapus!',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        deleteProfilePictureForm.submit();
+                    }
+                });
             });
-        });
-    </script>
+        </script>
     @endif
 @endpush

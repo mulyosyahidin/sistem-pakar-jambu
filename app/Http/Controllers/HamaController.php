@@ -15,7 +15,7 @@ class HamaController extends Controller
     {
         $data = Hama::withCount('solusi')->orderByRaw('LENGTH(kode), kode')->get();
 
-        return view('hama.index', compact('data'));
+        return view('admin.hama.index', compact('data'));
     }
 
     /**
@@ -23,7 +23,7 @@ class HamaController extends Controller
      */
     public function create()
     {
-        return view('hama.create');
+        return view('admin.hama.create');
     }
 
     /**
@@ -34,24 +34,22 @@ class HamaController extends Controller
         $request->validate([
             'kode' => 'required|string|max:4|unique:hama,kode',
             'nama' => 'required|string|unique:hama,nama',
+            'deskripsi' => 'nullable|string',
             'foto' => 'nullable|image|max:2048',
         ]);
 
         $hama = Hama::create($request->all());
 
-        if ($request->hasFile('foto') && $request->file('foto')->isValid()) {
-            $fileService = new FileService();
-            $file = $fileService->upload('foto');
+        $file = FileService::upload('foto');
 
-            if ($file) {
-                $hama->update([
-                    'foto' => $file['file_path'],
-                ]);
-            }
+        if ($file) {
+            $hama->update([
+                'foto' => $file['file_path'],
+            ]);
         }
 
         return redirect()
-            ->route('hama.index')
+            ->route('admin.hama.index')
             ->withSuccess('Berhasil menambah data hama baru');
     }
 
@@ -62,7 +60,7 @@ class HamaController extends Controller
     {
         $hama->loadCount('solusi');
 
-        return view('hama.show', compact('hama'));
+        return view('admin.hama.show', compact('hama'));
     }
 
     /**
@@ -70,7 +68,7 @@ class HamaController extends Controller
      */
     public function edit(Hama $hama)
     {
-        return view('hama.edit', compact('hama'));
+        return view('admin.hama.edit', compact('hama'));
     }
 
     /**
@@ -102,7 +100,7 @@ class HamaController extends Controller
         }
 
         return redirect()
-            ->route('hama.show', $hama)
+            ->route('admin.hama.show', $hama)
             ->withSuccess('Berhasil memperbarui data hama');
     }
 
@@ -111,10 +109,12 @@ class HamaController extends Controller
      */
     public function destroy(Hama $hama)
     {
+        FileService::delete($hama->foto);
+
         $hama->delete();
 
         return redirect()
-            ->route('hama.index')
+            ->route('admin.hama.index')
             ->withSuccess('Berhasil menghapus data hama');
     }
 }
