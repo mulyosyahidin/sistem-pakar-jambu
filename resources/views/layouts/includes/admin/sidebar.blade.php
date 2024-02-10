@@ -77,6 +77,13 @@
                         <span>Basis Pengetahuan</span>
                     </a>
                 </li>
+
+                <li class="nav-item my-1">
+                    <a class="nav-link d-flex align-items-center rounded-pill {{ activeClass('admin.users.*') }}" href="{{ route('admin.users.index') }}">
+                        <i class="bi bi-people-fill"></i>
+                        <span>Users</span>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

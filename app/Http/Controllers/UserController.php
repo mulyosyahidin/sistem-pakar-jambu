@@ -14,7 +14,7 @@ class UserController extends Controller
     {
         $data = User::withCount('konsultasi')->where('role', 'user')->get();
 
-        return view('users.index', compact('data'));
+        return view('admin.users.index', compact('data'));
     }
 
     /**
@@ -25,7 +25,7 @@ class UserController extends Controller
         $user->loadCount('konsultasi');
         $user->load('konsultasi.hama');
 
-        return view('users.show', compact('user'));
+        return view('admin.users.show', compact('user'));
     }
 
     /**
@@ -36,7 +36,7 @@ class UserController extends Controller
         $user->delete();
 
         return redirect()
-            ->route('users.index')
+            ->route('admin.users.index')
             ->withSuccess('Berhasil menghapus data user');
     }
 }
