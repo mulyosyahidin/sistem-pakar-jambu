@@ -18,7 +18,7 @@ class BasisPengetahuanController extends Controller
         $dataGejala = Gejala::orderBy('kode')->get();
         $dataHama = Hama::orderByRaw('LENGTH(kode), kode')->get();
 
-        return view('basis-pengetahuan.index', compact('hama', 'dataGejala', 'dataHama'));
+        return view('admin.basis-pengetahuan.index', compact('hama', 'dataGejala', 'dataHama'));
     }
 
     /**
@@ -32,7 +32,7 @@ class BasisPengetahuanController extends Controller
         $gejala = Gejala::orderBy('kode')->get();
         $gejalaHama = $hama->gejala->pluck('id')->toArray();
 
-        return view('basis-pengetahuan.edit', compact('gejala', 'hama', 'gejalaHama'));
+        return view('admin.basis-pengetahuan.edit', compact('gejala', 'hama', 'gejalaHama'));
     }
 
     /**
@@ -47,7 +47,7 @@ class BasisPengetahuanController extends Controller
         $hama->gejala()->sync($request->gejala);
 
         return redirect()
-            ->route('basis-pengetahuan.index')
+            ->route('admin.basis-pengetahuan.index')
             ->withSuccess('Berhasil memperbarui data basis pengetahuan.');
     }
 }

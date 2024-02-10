@@ -1,104 +1,97 @@
-@extends('layouts.modernize')
-@section('title', 'Kelola Basis Pengetahuan')
-
-@section('custom_head')
-    <style>
-        .badge-gejala {
-            cursor: pointer;
-        }
-    </style>
-@endsection
+@extends('layouts.admin')
+@section('title', 'Kelola Data Basis Pengetahuan')
 
 @section('content')
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12">
-                <div class="card bg-info-subtle shadow-none position-relative overflow-hidden mb-4">
-                    <div class="card-body px-4 py-3">
-                        <div class="row align-items-center">
-                            <div class="col-9">
-                                <h4 class="fw-semibold mb-8">Kelola Basis Pengetahuan</h4>
-                                <nav aria-label="breadcrumb">
-                                    <ol class="breadcrumb">
-                                        <li class="breadcrumb-item">
-                                            <a class="text-muted text-decoration-none"
-                                               href="{{ route('dashboard') }}">Dashboard</a>
-                                        </li>
-                                        <li class="breadcrumb-item" aria-current="page">Basis Pengetahuan</li>
-                                    </ol>
-                                </nav>
-                            </div>
-                            <div class="col-3">
-                                <div class="text-center mb-n5">
-                                    <img src="{{ asset('assets/themes/modernize/images/backgrounds/ChatBc.png') }}"
-                                         alt="Kelola Data Basis Pengetahuan" class="img-fluid mb-n4">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card w-100 position-relative overflow-hidden">
-                    <div class="px-4 py-3 border-bottom">
-                        <h5 class="card-title fw-semibold mb-0 lh-sm">Kelola Basis Pengetahuan</h5>
-                    </div>
-
-                    <div class="card-body p-4">
-                        <div class="table-responsive rounded-2 mb-4">
-                            <table class="table border text-nowrap customize-table mb-0 align-middle table-hover"
-                                   id="dt-data"
-                                   style="width: 100%;">
-                                <thead class="text-dark fs-4">
-                                <tr>
-                                    <th>
-                                        <h6 class="fs-4 fw-semibold mb-0">#</h6>
-                                    </th>
-                                    <th>
-                                        <h6 class="fs-4 fw-semibold mb-0">Kode</h6>
-                                    </th>
-                                    <th>
-                                        <h6 class="fs-4 fw-semibold mb-0">Nama</h6>
-                                    </th>
-                                    <th>
-                                        <h6 class="fs-4 fw-semibold mb-0">Gejala</h6>
-                                    </th>
-                                    <th>
-                                    </th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach ($hama as $item)
-                                    <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->kode }}</td>
-                                        <td>{{ $item->nama }}</td>
-                                        <td>
-                                            @foreach ($item->gejala->sortBy('kode') as $gejala)
-                                                <span class="btn btn-sm btn-outline-primary me-1 rounded-pill badge-gejala"
-                                                      data-bs-toggle="tooltip" data-bs-placement="top"
-                                                      title="{{ $gejala->nama }}">{{ $gejala->kode }}</span>
-                                            @endforeach
-                                        </td>
-                                        <td class="text-end">
-                                            <a href="{{ route('basis-pengetahuan.edit', $item->id) }}"
-                                               class="btn btn-sm btn-warning">
-                                                <i class="ti ti-pencil"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+    <main class="container-fluid p-0">
+        <div class="px-6 px-lg-7 pt-8 border-bottom pb-5">
+            <div class="d-flex align-items-center">
+                <h1>Basis Pengetahuan</h1>
             </div>
         </div>
-    </div>
+        <div class="table-responsive">
+            <table class="table table-hover table-striped table-sm table-nowrap" id="dt-data">
+                <thead>
+                <tr>
+                    <th scope="col">
+                        <div class="d-flex align-items-center gap-2 ps-1">
+                            <span>#</span>
+                        </div>
+                    </th>
+                    <th scope="col">Nama</th>
+                    <th scope="col">Kode</th>
+                    <th scope="col">Gejala</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                @forelse ($hama as $item)
+                    <tr>
+                        <td>
+                            <div class="d-flex align-items-center gap-3 ps-1">
+                                <div><span class="d-block text-heading fw-bold">{{ $loop->iteration }}</span></div>
+                            </div>
+                        </td>
+                        <td class="text-xs">{{ $item->nama }}</td>
+                        <td>{{ $item->kode }}</td>
+                        <td>
+                            @foreach ($item->gejala->sortBy('kode') as $gejala)
+                                <span class="btn btn-neutral btn-xs me-1 rounded-pill badge-gejala">{{ $gejala->kode }}</span>
+                            @endforeach
+                        </td>
+                        <td class="text-end">
+                            <a href="{{ route('admin.basis-pengetahuan.edit', $item) }}"
+                               class="btn btn-xs btn-warning text-white">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="4" class="text-center">Tidak ada data</td>
+                    </tr>
+                @endforelse
+                </tbody>
+            </table>
+        </div>
+    </main>
+@endsection
+
+@section('custom_html')
+    <form action="#" method="POST" id="delete-form">
+        @csrf
+        @method('DELETE')
+    </form>
 @endsection
 
 @push('custom_js')
     <script>
-        $("#dt-data").DataTable();
+        let deleteBtns = document.querySelectorAll('.btn-delete');
+        let deleteForm = document.querySelector('#delete-form');
+
+        deleteBtns.forEach(btn => {
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                let id = this.dataset.id;
+                let url = '{{ route('admin.hama.destroy', ':id') }}';
+                url = url.replace(':id', id);
+
+                Swal.fire({
+                    title: 'Apakah Anda yakin?',
+                    text: 'Data yang dihapus tidak dapat dikembalikan!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Hapus',
+                    cancelButtonText: 'Batal',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        deleteForm.setAttribute('action', url);
+
+                        deleteForm.submit();
+                    }
+                });
+
+            });
+        });
     </script>
 @endpush

@@ -70,6 +70,13 @@
                         <span>Solusi</span>
                     </a>
                 </li>
+
+                <li class="nav-item my-1">
+                    <a class="nav-link d-flex align-items-center rounded-pill {{ activeClass('admin.basis-pengetahuan.*') }}" href="{{ route('admin.basis-pengetahuan.index') }}">
+                        <i class="bi bi-bookmark-fill"></i>
+                        <span>Basis Pengetahuan</span>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
