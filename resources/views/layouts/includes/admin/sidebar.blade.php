@@ -56,6 +56,13 @@
                         <span>Hama</span>
                     </a>
                 </li>
+
+                <li class="nav-item my-1">
+                    <a class="nav-link d-flex align-items-center rounded-pill {{ activeClass(['admin.gejala.*', 'admin.kategori-gejala.*']) }}" href="{{ route('admin.gejala.index') }}">
+                        <i class="bi bi-question-circle-fill"></i>
+                        <span>Gejala</span>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

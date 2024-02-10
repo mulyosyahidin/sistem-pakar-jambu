@@ -1,89 +1,61 @@
-@extends('layouts.modernize')
+@extends('layouts.admin')
 @section('title', 'Kelola Data Kategori Gejala')
 
 @section('content')
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12">
-                <div class="card bg-info-subtle shadow-none position-relative overflow-hidden mb-4">
-                    <div class="card-body px-4 py-3">
-                        <div class="row align-items-center">
-                            <div class="col-9">
-                                <h4 class="fw-semibold mb-8">Data Kategori Gejala</h4>
-                                <nav aria-label="breadcrumb">
-                                    <ol class="breadcrumb">
-                                        <li class="breadcrumb-item">
-                                            <a class="text-muted text-decoration-none"
-                                               href="{{ route('dashboard') }}">Dashboard</a>
-                                        </li>
-                                        <li class="breadcrumb-item">
-                                            <a class="text-muted text-decoration-none"
-                                               href="{{ route('gejala.index') }}">Gejala</a>
-                                        </li>
-                                        <li class="breadcrumb-item" aria-current="page">Kelola Data Kategori Gejala</li>
-                                    </ol>
-                                </nav>
-                            </div>
-                            <div class="col-3">
-                                <div class="text-center mb-n5">
-                                    <img src="{{ asset('assets/themes/modernize/images/backgrounds/ChatBc.png') }}"
-                                         alt="Kelola Data Kategori Gejala" class="img-fluid mb-n4">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <main class="container-fluid p-0">
+        <div class="px-6 px-lg-7 pt-8 border-bottom pb-5">
+            <div class="d-flex align-items-center">
+                <h1>Kategori Gejala</h1>
 
-                <div class="card w-100 position-relative overflow-hidden">
-                    <div class="px-4 py-3 border-bottom d-flex justify-content-between">
-                        <h5 class="card-title fw-semibold mb-0 lh-sm">Kelola Kategori Gejala</h5>
-
-                        <a href="{{ route('kategori-gejala.create') }}" class="btn btn-sm btn-success">
-                            <i class="ti ti-plus"></i> Tambah Data
-                        </a>
-                    </div>
-
-                    <div class="card-body p-4">
-                        <div class="table-responsive rounded-2 mb-4">
-                            <table class="table border text-nowrap customize-table mb-0 align-middle table-hover" id="dt-data"
-                                   style="width: 100%;">
-                                <thead class="text-dark fs-4">
-                                <tr>
-                                    <th>
-                                        <h6 class="fs-4 fw-semibold mb-0">#</h6>
-                                    </th>
-                                    <th>
-                                        <h6 class="fs-4 fw-semibold mb-0">Nama</h6>
-                                    </th>
-                                    <th>
-                                    </th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach ($data as $item)
-                                    <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->nama }}</td>
-                                        <td class="text-end">
-                                            <a href="{{ route('kategori-gejala.edit', $item->id) }}"
-                                               class="btn btn-sm btn-warning">
-                                                <i class="ti ti-pencil"></i>
-                                            </a>
-                                            <a href="#" data-id="{{ $item->id }}"
-                                               class="btn btn-sm btn-danger btn-delete">
-                                                <i class="ti ti-trash"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                <div class="hstack gap-2 ms-auto">
+                    <a href="{{ route('admin.kategori-gejala.create') }}" class="btn btn-sm btn-primary">
+                        <i class="bi bi-plus-lg me-2"></i> Tambah Data</a>
                 </div>
             </div>
         </div>
-    </div>
+        <div class="table-responsive">
+            <table class="table table-hover table-striped table-sm table-nowrap" id="dt-data">
+                <thead>
+                <tr>
+                    <th scope="col">
+                        <div class="d-flex align-items-center gap-2 ps-1">
+                            <span>#</span>
+                        </div>
+                    </th>
+                    <th scope="col">Nama</th>
+                    <th scope="col">Jumlah Gejala</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                @forelse ($data as $item)
+                    <tr>
+                        <td>
+                            <div class="d-flex align-items-center gap-3 ps-1">
+                                <div><span class="d-block text-heading fw-bold">{{ $loop->iteration }}</span></div>
+                            </div>
+                        </td>
+                        <td class="text-xs">{{ $item->nama }}</td>
+                        <td class="text-xs">{{ $item->gejala_count }}</td>
+                        <td class="text-end">
+                            <a href="{{ route('admin.kategori-gejala.edit', $item) }}" class="btn btn-xs btn-warning text-white">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+
+                            <a href="#" data-id="{{ $item->id }}" class="btn btn-xs btn-danger text-white btn-delete">
+                                <i class="bi bi-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="4" class="text-center">Tidak ada data</td>
+                    </tr>
+                @endforelse
+                </tbody>
+            </table>
+        </div>
+    </main>
 @endsection
 
 @section('custom_html')
@@ -95,34 +67,32 @@
 
 @push('custom_js')
     <script>
-        $("#dt-data").DataTable();
-    </script>
-
-    <script>
         let deleteBtns = document.querySelectorAll('.btn-delete');
         let deleteForm = document.querySelector('#delete-form');
 
-        $('#dt-data tbody').on('click', '.btn-delete', function (e) {
-            e.preventDefault();
+        deleteBtns.forEach(btn => {
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
 
-            let id = this.dataset.id;
-            let url = '{{ route('kategori-gejala.destroy', ':id') }}';
-            url = url.replace(':id', id);
+                let id = this.dataset.id;
+                let url = '{{ route('admin.kategori-gejala.destroy', ':id') }}';
+                url = url.replace(':id', id);
 
-            Swal.fire({
-                title: 'Apakah Anda yakin?',
-                text: 'Data yang dihapus tidak dapat dikembalikan!',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Hapus',
-                cancelButtonText: 'Batal',
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    deleteForm.setAttribute('action', url);
-                    deleteForm.submit();
-                }
+                Swal.fire({
+                    title: 'Apakah Anda yakin?',
+                    text: 'Data yang dihapus tidak dapat dikembalikan!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Hapus',
+                    cancelButtonText: 'Batal',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        deleteForm.setAttribute('action', url);
+
+                        deleteForm.submit();
+                    }
+                });
+
             });
         });
     </script>

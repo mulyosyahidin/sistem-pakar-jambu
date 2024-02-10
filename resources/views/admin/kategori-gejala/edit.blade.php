@@ -1,81 +1,54 @@
-@extends('layouts.modernize')
+@extends('layouts.admin')
 @section('title', 'Edit Data Kategori Gejala')
 
 @section('content')
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12">
-                <div class="card bg-info-subtle shadow-none position-relative overflow-hidden mb-4">
-                    <div class="card-body px-4 py-3">
-                        <div class="row align-items-center">
-                            <div class="col-9">
-                                <h4 class="fw-semibold mb-8">Edit Data Kategori Gejala</h4>
-                                <nav aria-label="breadcrumb">
-                                    <ol class="breadcrumb">
-                                        <li class="breadcrumb-item">
-                                            <a class="text-muted text-decoration-none"
-                                               href="{{ route('dashboard') }}">Dashboard</a>
-                                        </li>
-                                        <li class="breadcrumb-item">
-                                            <a class="text-muted text-decoration-none"
-                                               href="{{ route('gejala.index') }}">Gejala</a>
-                                        </li>
-                                        <li class="breadcrumb-item">
-                                            <a class="text-muted text-decoration-none"
-                                               href="{{ route('kategori-gejala.index') }}">Kategori Gejala</a>
-                                        </li>
-                                        <li class="breadcrumb-item">
-                                            <a class="text-muted text-decoration-none"
-                                               href="{{ route('kategori-gejala.index') }}">{{ $kategori_gejala->nama }}</a>
-                                        </li>
-                                        <li class="breadcrumb-item" aria-current="page">Edit Data</li>
-                                    </ol>
-                                </nav>
+    <main class="container-fluid px-6 pb-10">
+        <form action="{{ route('admin.kategori-gejala.update', $kategori_gejala) }}" method="post">
+            @csrf
+            @method('PUT')
+
+            <header class="py-4 border-bottom">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <div class="d-flex align-items-center gap-4">
+                            <div>
+                                <a href="{{ route('admin.kategori-gejala.index') }}" class="btn-close text-xs"></a>
                             </div>
-                            <div class="col-3">
-                                <div class="text-center mb-n5">
-                                    <img src="{{ asset('assets/themes/modernize/images/backgrounds/ChatBc.png') }}"
-                                         alt="Edit Data Hama" class="img-fluid mb-n4">
-                                </div>
-                            </div>
+                            <div class="vr opacity-20 my-1"></div>
+                            <h1 class="h4 ls-tight">Edit Data Kategori Gejala</h1>
+                        </div>
+                    </div>
+                    <div class="col-auto d-none d-md-block">
+                        <div class="hstack gap-2 justify-content-end">
+                            <button type="submit" class="btn btn-sm btn-primary">
+                                <span>Simpan</span>
+                            </button>
                         </div>
                     </div>
                 </div>
+            </header>
 
-                <div class="card">
-                    <div class="px-4 py-3 border-bottom d-flex justify-content-between">
-                        <h5 class="card-title fw-semibold mb-0">Data Kategori Gejala</h5>
+            <div class="row align-items-center mt-5">
+                <div class="col-md-2">
+                    <label class="form-label">Nama</label>
+                </div>
+                <div class="col-md-8 col-xl-5">
+                    <div class="">
+                        <input type="text" name="nama" value="{{ old('nama', $kategori_gejala->nama) }}"
+                               class="form-control @error('nama') is-invalid @enderror" required>
 
-                        <a href="{{ route('kategori-gejala.index') }}" class="btn btn-sm btn-primary">
-                            <i class="ti ti-arrow-left"></i> Kembali
-                        </a>
+                        @error('nama')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
-
-                    <form action="{{ route('kategori-gejala.update', $kategori_gejala) }}" method="post">
-                        @csrf
-                        @method('PUT')
-
-                        <div class="card-body p-4">
-                            <div class="mb-4">
-                                <label class="form-label fw-semibold">Nama</label>
-                                <input type="text" name="nama" value="{{ old('nama', $kategori_gejala->nama) }}"
-                                       class="form-control @error('nama') is-invalid @enderror" required>
-
-                                @error('nama')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="card-footer d-flex justify-content-end">
-                            <div class="d-flex justify-content-end">
-                                <button class="btn btn-primary">Simpan</button>
-                            </div>
-                        </div>
-                    </form>
                 </div>
             </div>
-        </div>
-    </div>
+
+            <hr class="my-6">
+            <div class="d-flex d-md-none justify-content-end gap-2">
+                <button type="submit" class="btn btn-sm btn-primary">Simpan</button>
+            </div>
+
+        </form>
+    </main>
 @endsection

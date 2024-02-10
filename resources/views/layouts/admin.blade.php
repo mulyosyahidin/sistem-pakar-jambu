@@ -16,6 +16,20 @@
 
     @vite(['resources/js/app.js'])
     @yield('custom_head')
+
+    <style>
+        .is-invalid {
+            border-color: #dc3545;
+        }
+
+        .invalid-feedback {
+            display: block;
+            width: 100%;
+            margin-top: .25rem;
+            font-size: 80%;
+            color: #dc3545;
+        }
+    </style>
 </head>
 <body class="bg-body-tertiary">
 

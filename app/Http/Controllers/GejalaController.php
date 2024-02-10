@@ -17,7 +17,7 @@ class GejalaController extends Controller
     {
         $data = Gejala::with('kategori')->orderBy('kode')->get();
 
-        return view('gejala.index', compact('data'));
+        return view('admin.gejala.index', compact('data'));
     }
 
     /**
@@ -27,7 +27,7 @@ class GejalaController extends Controller
     {
         $kategori = Kategori_gejala::orderBy('nama')->get();
 
-        return view('gejala.create', compact('kategori'));
+        return view('admin.gejala.create', compact('kategori'));
     }
 
     /**
@@ -42,23 +42,13 @@ class GejalaController extends Controller
             'id_kategori' => 'nullable|exists:kategori_gejala,id',
             'media_type' => 'nullable|in:image,video',
             'media_url' => 'nullable|url',
-            'media_file' => 'nullable|file|mimes:jpg,jpeg,png,mp4,webm,ogg,mp3,wav,flac',
+            'media_file' => 'nullable|file|image|mimes:jpg,jpeg,png,webp|max:4096',
         ]);
 
         $gejala = Gejala::create($request->all());
 
-        if ($gejala->media_type == 'image' && $request->has('media_file') && $request->file('media_file')->isValid()) {
-            $fileService = new FileService();
-            $file = $fileService->upload('media_file');
-
-            File::create([
-                'name' => 'Gejala Image #' . $gejala->id,
-                'caption' => null,
-                'file_name' => $file['file_name'],
-                'file_path' => $file['file_path'],
-                'file_size' => $file['file_size'],
-                'file_mime_type' => $file['file_mime_type'],
-            ]);
+        if ($gejala->media_type == 'image') {
+            $file = FileService::upload('media_file');
 
             $gejala->update([
                 'media_url' => $file['file_path'],
@@ -66,7 +56,7 @@ class GejalaController extends Controller
         }
 
         return redirect()
-            ->route('gejala.index')
+            ->route('admin.gejala.index')
             ->withSuccess('Berhasil menambah data gejala baru');
     }
 
@@ -75,7 +65,7 @@ class GejalaController extends Controller
      */
     public function show(Gejala $gejala)
     {
-        return view('gejala.show', compact('gejala'));
+        return view('admin.gejala.show', compact('gejala'));
     }
 
     /**
@@ -85,7 +75,7 @@ class GejalaController extends Controller
     {
         $kategori = Kategori_gejala::orderBy('nama')->get();
 
-        return view('gejala.edit', compact('gejala', 'kategori'));
+        return view('admin.gejala.edit', compact('gejala', 'kategori'));
     }
 
     /**
@@ -98,7 +88,12 @@ class GejalaController extends Controller
             'nama' => 'required|string|unique:gejala,nama,' . $gejala->id,
             'bobot' => 'nullable|numeric',
             'id_kategori' => 'nullable|exists:kategori_gejala,id',
+            'media_type' => 'nullable|in:image,video',
+            'media_url' => 'nullable|url',
+            'media_file' => 'nullable|file|image|mimes:jpg,jpeg,png,webp|max:4096',
         ]);
+
+        $tipeMedia = $request->media_type;
 
         $gejala->update([
             'kode' => $request->kode,
@@ -109,24 +104,22 @@ class GejalaController extends Controller
         ]);
 
         if ($gejala->media_type == 'video') {
+            if ($tipeMedia == 'image') {
+                FileService::delete($gejala->media_url);
+            }
+
             $gejala->update([
                 'media_url' => $request->media_url,
             ]);
         }
 
-        if ($request->media_type == 'image' && $request->has('media_file') && $request->file('media_file')->isValid())  {
-            $fileService = new FileService();
-            $file = $fileService->upload('media_file');
+        if ($request->media_type == 'image')  {
+            $file = FileService::upload('media_file');
 
             if ($file) {
-                File::create([
-                    'name' => 'Gejala Image #' . $gejala->id,
-                    'caption' => null,
-                    'file_name' => $file['file_name'],
-                    'file_path' => $file['file_path'],
-                    'file_size' => $file['file_size'],
-                    'file_mime_type' => $file['file_mime_type'],
-                ]);
+                if ($tipeMedia == 'image') {
+                    FileService::delete($gejala->media_url);
+                }
 
                 $gejala->update([
                     'media_url' => $file['file_path'],
@@ -135,7 +128,7 @@ class GejalaController extends Controller
         }
 
         return redirect()
-            ->route('gejala.show', $gejala)
+            ->route('admin.gejala.show', $gejala)
             ->withSuccess('Berhasil memperbarui data gejala');
     }
 
@@ -144,10 +137,14 @@ class GejalaController extends Controller
      */
     public function destroy(Gejala $gejala)
     {
+        if ($gejala->media_type == 'image') {
+            FileService::delete($gejala->media_url);
+        }
+
         $gejala->delete();
 
         return redirect()
-            ->route('gejala.index')
+            ->route('admin.gejala.index')
             ->withSuccess('Berhasil menghapus data gejala');
     }
 }

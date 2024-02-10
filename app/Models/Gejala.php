@@ -35,18 +35,19 @@ class Gejala extends Model
         'kode',
         'nama',
         'bobot',
+        'deskripsi',
         'media_type',
         'media_url',
     ];
-    
+
     protected $casts = [
         'bobot' => 'float',
     ];
 
-    
+
     /**
      * Relasi many-to-many dengan tabel hama
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function hama(): BelongsToMany
@@ -56,7 +57,7 @@ class Gejala extends Model
 
     /**
      * Relasi many-to-one dengan tabel kategori_gejala
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function kategori(): BelongsTo

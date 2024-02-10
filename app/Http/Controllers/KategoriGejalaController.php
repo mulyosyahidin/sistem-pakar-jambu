@@ -12,9 +12,9 @@ class KategoriGejalaController extends Controller
      */
     public function index()
     {
-        $data = Kategori_gejala::orderBy('nama')->get();
+        $data = Kategori_gejala::withCount('gejala')->orderBy('nama')->get();
 
-        return view('kategori-gejala.index', compact('data'));
+        return view('admin.kategori-gejala.index', compact('data'));
     }
 
     /**
@@ -22,7 +22,7 @@ class KategoriGejalaController extends Controller
      */
     public function create()
     {
-        return view('kategori-gejala.create');
+        return view('admin.kategori-gejala.create');
     }
 
     /**
@@ -37,7 +37,7 @@ class KategoriGejalaController extends Controller
         Kategori_gejala::create($request->all());
 
         return redirect()
-            ->route('kategori-gejala.index')
+            ->route('admin.kategori-gejala.index')
             ->withSuccess('Berhasil menambah data kategori gejala.');
     }
 
@@ -46,7 +46,7 @@ class KategoriGejalaController extends Controller
      */
     public function edit(Kategori_gejala $kategori_gejala)
     {
-        return view('kategori-gejala.edit', compact('kategori_gejala'));
+        return view('admin.kategori-gejala.edit', compact('kategori_gejala'));
     }
 
     /**
@@ -61,7 +61,7 @@ class KategoriGejalaController extends Controller
         $kategori_gejala->update($request->all());
 
         return redirect()
-            ->route('kategori-gejala.index')
+            ->route('admin.kategori-gejala.index')
             ->withSuccess('Berhasil mengubah data kategori gejala.');
     }
 
@@ -73,7 +73,7 @@ class KategoriGejalaController extends Controller
         $kategori_gejala->delete();
 
         return redirect()
-            ->route('kategori-gejala.index')
+            ->route('admin.kategori-gejala.index')
             ->withSuccess('Berhasil menghapus data kategori gejala.');
     }
 }
