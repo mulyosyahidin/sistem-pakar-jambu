@@ -46,12 +46,10 @@ Route::group(['middleware' => ['auth', 'role:admin'], 'prefix' => 'admin', 'as' 
     Route::resource('users', UserController::class)->only(['index', 'show', 'destroy']);
     Route::get('/konsultasi', [KonsultasiController::class, 'index'])->name('konsultasi.index');
     Route::get('/konsultasi/{konsultasi}', [KonsultasiController::class, 'show'])->name('konsultasi.show');
-});
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profil', [ProfileController::class, 'edit'])->name('profil.edit');
+    Route::put('/profil', [ProfileController::class, 'update'])->name('profil.update');
+    Route::delete('/profil/delete-profile-picture', [ProfileController::class, 'deleteProfilePicture'])->name('profil.delete-profile-picture');
 });
 
 require __DIR__.'/auth.php';

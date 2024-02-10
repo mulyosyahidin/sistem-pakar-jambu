@@ -13,9 +13,11 @@
                 <a class="d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown"
                    aria-haspopup="false" aria-expanded="false">
                     <div>
-                        <div class="avatar avatar-sm text-bg-secondary rounded-circle">AE</div>
+                        <div class="avatar avatar-sm text-bg-secondary rounded-circle">
+                            <img src="{{ auth()->user()->profilePictureUrl }}" alt="{{ auth()->user()->name }}">
+                        </div>
                     </div>
-                    <div class="d-none d-sm-block ms-3"><span class="h6">Alexis</span></div>
+                    <div class="d-none d-sm-block ms-3"><span class="h6">{{ auth()->user()->name }}</span></div>
                     <div class="d-none d-md-block ms-md-2">
                         <i class="bi bi-chevron-down text-muted text-xs"></i>
                     </div>
@@ -23,10 +25,10 @@
                 <div class="dropdown-menu dropdown-menu-end">
                     <div class="dropdown-header">
                         <span class="d-block text-sm text-muted mb-1">Login sebagai</span>
-                        <span class="d-block text-heading fw-semibold">Alexis Enache</span>
+                        <span class="d-block text-heading fw-semibold">{{ auth()->user()->name }}</span>
                     </div>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">
+                    <a class="dropdown-item" href="{{ route('admin.profil.edit') }}">
                         <i class="bi bi-pencil me-3"></i> Edit Profil
                     </a>
                     <a class="dropdown-item logout-link" href="#">

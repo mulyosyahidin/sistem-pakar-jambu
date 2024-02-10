@@ -12,6 +12,7 @@ return new class extends Migration {
     {
         Schema::table('users', function (Blueprint $table) {
             $table->enum('role', [\App\Enums\UserRole::ADMIN->value, \App\Enums\UserRole::USER->value])->default('user')->after('email');
+            $table->string('profile_picture')->nullable()->after('role');
         });
     }
 
@@ -22,6 +23,7 @@ return new class extends Migration {
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('role');
+            $table->dropColumn('profile_picture');
         });
     }
 };

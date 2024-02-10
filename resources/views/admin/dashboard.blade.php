@@ -1,4 +1,5 @@
 @extends('layouts.admin')
+@section('title', 'Admin Dashboard')
 
 @section('content')
     <main class="container-fluid px-3 py-5 p-lg-6 p-xxl-8">

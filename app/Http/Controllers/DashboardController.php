@@ -7,17 +7,15 @@ use App\Models\Gejala;
 use App\Models\Hama;
 use App\Models\Solusi;
 use App\Models\User;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
     /**
-     * Menampilkan halaman dashboard
-     *
-     * Dasbor menampilkan ringkasan data aplikasi seperti jumlah hama, gejala, user, dan konsultasi
-     * serta riwayat konsultasi terbaru.
-     *
-     * @return \Illuminate\View\View
+     * @return Application|Factory|View|\Illuminate\Foundation\Application
      */
     public function index()
     {
@@ -31,6 +29,6 @@ class DashboardController extends Controller
 
         $konsultasiTerbaru = Konsultasi::where('user_id', '!=', auth()->id())->with(['hama', 'user'])->latest()->take(5)->get();
 
-        return view('dashboard', compact('count', 'konsultasiTerbaru'));
+        return view('admin.dashboard', compact('count', 'konsultasiTerbaru'));
     }
 }

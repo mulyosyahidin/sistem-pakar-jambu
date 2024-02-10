@@ -40,15 +40,16 @@
                     </div>
                 </div>
 
-                <div class="dropdown"><a class="avatar avatar-sm text-bg-dark rounded-circle" href="#" role="button"
-                                         data-bs-toggle="dropdown" aria-haspopup="false" aria-expanded="false"><img
-                            src="https://satoshi.webpixels.io/img/memoji/memoji-1.svg"></a>
+                <div class="dropdown">
+                    <a class="avatar avatar-sm text-bg-dark rounded-circle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
+                        <img src="{{ auth()->user()->profilePictureUrl }}" alt="{{ auth()->user()->name }}">
+                    </a>
                     <div class="dropdown-menu dropdown-menu-end">
                         <div class="dropdown-header"><span class="d-block text-sm text-muted mb-1">Login sebagai</span>
-                            <span class="d-block text-heading fw-semibold">Alexis Enache</span></div>
+                            <span class="d-block text-heading fw-semibold">{{ auth()->user()->name }}</span></div>
                         <div class="dropdown-divider"></div>
                       <a
-                            class="dropdown-item" href="#"><i class="bi bi-pencil me-3"></i> Edit Profil</a>
+                            class="dropdown-item" href="{{ route('admin.profil.edit') }}"><i class="bi bi-pencil me-3"></i> Edit Profil</a>
                         <a class="dropdown-item logout-link" href="#"><i class="bi bi-box-arrow-right me-3"></i> Keluar</a></div>
                 </div>
             </div>
@@ -94,5 +95,28 @@
         });
     });
 </script>
+
+@if (session()->has('success'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil!',
+            text: `{{ session()->get('success') }}`,
+        })
+    </script>
+@endif
+
+@if (session()->has('error'))
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Terjadi kesalahan!',
+            text: `{{ session()->get('error') }}`,
+        })
+    </script>
+@endif
+
+@stack('custom_js')
+
 </body>
 </html>
