@@ -1,0 +1,37 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Hama;
+use App\Models\Solusi;
+use Illuminate\Http\Request;
+
+class SolusiHamaController extends Controller
+{
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Hama $hama)
+    {
+        $solusi = Solusi::orderBy('kode')->get();
+        $solusiHama = $hama->solusi->pluck('id')->toArray();
+
+        return view('solusi-hama.edit', compact('hama', 'solusi', 'solusiHama'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Hama $hama)
+    {
+        $request->validate([
+            'solusi' => 'nullable|array',
+        ]);
+
+        $hama->solusi()->sync($request->solusi);
+
+        return redirect()
+            ->route('hama.show', $hama)
+            ->withSuccess('Berhasil memperbarui data solusi hama');
+    }
+}
