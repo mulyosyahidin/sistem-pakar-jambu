@@ -30,7 +30,7 @@
             <nav class="navbar navbar-expand-lg navbar-dark p-0" id="navbar">
                 <div class="container px-sm-0">
                     <a class="navbar-brand d-inline-block w-lg-64" href="#">
-                        <img src="{{ asset('assets/themes/satoshi/img/logo-light.svg') }}" class="h-rem-10" alt="...">
+                        <img src="{{ asset('assets/images/logo-light.png') }}" class="h-rem-10" alt="...">
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                             data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"

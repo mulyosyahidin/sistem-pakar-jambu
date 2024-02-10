@@ -20,7 +20,7 @@
         class="col-md-6 col-lg-5 col-xl-5 position-fixed start-0 top-0 vh-100 overflow-y-hidden d-none d-lg-flex flex-lg-column">
         <div class="p-12 py-xl-10 px-xl-20">
             <a class="d-block" href="{{ route('home') }}">
-                <img src="{{ asset('assets/themes/satoshi/img/logo-light.svg') }}" class="h-rem-10" alt="...">
+                <img src="{{ asset('assets/images/logo-light.png') }}" class="h-rem-10" alt="...">
             </a>
             <div class="mt-16">
                 <h1 class="ls-tight fw-bolder display-6 text-white mb-5">
@@ -47,7 +47,7 @@
         <div class="w-md-50 mx-auto px-10 px-md-0 py-10">
             <div class="mb-10">
                 <a class="d-inline-block d-lg-none mb-10" href="{{ route('home') }}">
-                    <img src="{{ asset('assets/themes/satoshi/img/logo-dark.svg') }}" class="h-rem-10" alt="...">
+                    <img src="{{ asset('assets/images/logo-dark.png') }}" class="h-rem-10" alt="...">
                 </a>
                 <h1 class="ls-tight fw-bolder h3">Daftar</h1>
                 <div class="mt-3 text-sm text-muted">
