@@ -54,6 +54,38 @@
             </table>
         </div>
 
+        <div class="card border-0 border-xxl h-md-100 mt-5">
+            <div class="card-body p-0 p-xxl-6">
+                <div class="d-flex justify-content-between align-items-center mb-5">
+                    <div>
+                        <h5>Solusi Hama</h5>
+                    </div>
+                    <div class="hstack align-items-center">
+                        <a href="{{ route('admin.hama.solusi.edit', $hama) }}" class="btn btn-sm btn-neutral"><i
+                                class="bi bi-pencil"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="vstack gap-6">
+                    @forelse($hama->solusi as $solusi)
+                        <div class="hover">
+                            <div class="d-flex align-items-center gap-3">
+
+                                <div>
+                                    <h6 class="progress-text mb-1 d-block">{{ $solusi->kode }}</h6>
+                                    <p class="text-muted text-xs">{{ \Str::limit($solusi->solusi, 40) }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    @empty
+                        <div class="text-center">
+                            <p class="text-muted mb-0">Tidak ada data solusi.</p>
+                        </div>
+                    @endforelse
+                </div>
+            </div>
+        </div>
+
         <div class="d-flex d-md-none justify-content-end gap-2">
             <div class="hstack gap-2 justify-content-end">
                 <a href="{{ route('admin.hama.edit', $hama) }}" class="btn btn-sm btn-warning text-white">

@@ -39,7 +39,7 @@ class Hama extends Model
     /**
      * Relasi many-to-many ke model Solusi
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return BelongsToMany
      */
     public function solusi(): BelongsToMany
     {
@@ -52,7 +52,7 @@ class Hama extends Model
      * Relasi basis pengetahuan merupakan relasi many-to-many antara model Hama dan model Gejala.
      * Relasi ini menggunakan tabel basis pengetahuan (tb_basis_pengetahuan) sebagai pivot table.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return BelongsToMany
      */
     public function gejala(): BelongsToMany
     {

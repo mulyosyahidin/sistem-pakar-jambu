@@ -16,7 +16,7 @@ class SolusiHamaController extends Controller
         $solusi = Solusi::orderBy('kode')->get();
         $solusiHama = $hama->solusi->pluck('id')->toArray();
 
-        return view('solusi-hama.edit', compact('hama', 'solusi', 'solusiHama'));
+        return view('admin.solusi-hama.edit', compact('hama', 'solusi', 'solusiHama'));
     }
 
     /**
@@ -31,7 +31,7 @@ class SolusiHamaController extends Controller
         $hama->solusi()->sync($request->solusi);
 
         return redirect()
-            ->route('hama.show', $hama)
+            ->route('admin.hama.show', $hama)
             ->withSuccess('Berhasil memperbarui data solusi hama');
     }
 }
