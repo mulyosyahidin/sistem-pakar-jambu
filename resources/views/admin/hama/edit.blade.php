@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.satoshi')
 @section('title', 'Edit Data Hama')
 
 @section('content')
@@ -90,9 +90,9 @@
                     <div class="">
                         <input type="file" name="foto"
                                class="form-control @error('foto') is-invalid @enderror">
-                       @if($hama->foto)
+                        @if($hama->foto)
                             <small class="text-muted">Pilih foto baru untuk menghapus yang lama</small>
-                       @endif
+                        @endif
 
                         @error('foto')
                         <div class="invalid-feedback">{{ $message }}</div>

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Hama;
 use App\Services\FileService;
 use Illuminate\Http\Request;
@@ -84,19 +85,16 @@ class HamaController extends Controller
 
         $hama->update($request->all());
 
-        if ($request->hasFile('foto') && $request->file('foto')->isValid()) {
-            $fileService = new FileService();
-            $file = $fileService->upload('foto');
+        $file = FileService::upload('foto');
 
-            if ($file) {
-                if ($hama->foto) {
-                    $fileService->deleteFile($hama->foto);
-                }
-
-                $hama->update([
-                    'foto' => $file['file_path'],
-                ]);
+        if ($file) {
+            if ($hama->foto) {
+                FileService::delete($hama->foto);
             }
+
+            $hama->update([
+                'foto' => $file['file_path'],
+            ]);
         }
 
         return redirect()

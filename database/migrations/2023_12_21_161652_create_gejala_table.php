@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedInteger('id_kategori')->nullable();
             $table->string('kode', 4);
             $table->string('nama');
+            $table->text('deskripsi')->nullable();
             $table->decimal('bobot')->nullable();
             $table->enum('media_type', ['image', 'video'])->nullable();
             $table->string('media_url')->nullable();

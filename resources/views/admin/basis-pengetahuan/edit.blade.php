@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.satoshi')
 @section('title', 'Basis Pengetahuan')
 
 @section('content')

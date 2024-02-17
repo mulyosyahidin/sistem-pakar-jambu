@@ -1,5 +1,5 @@
 @extends('layouts.modernize')
-@section('title', 'Konsultasi')
+@section('title', 'Diagnosa')
 
 @section('content')
     <div class="container-fluid">
@@ -9,21 +9,21 @@
                     <div class="card-body px-4 py-3">
                         <div class="row align-items-center">
                             <div class="col-9">
-                                <h4 class="fw-semibold mb-8">Konsultasi</h4>
+                                <h4 class="fw-semibold mb-8">Diagnosa</h4>
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item">
                                             <a class="text-muted text-decoration-none"
                                                href="{{ route('dashboard') }}">Dashboard</a>
                                         </li>
-                                        <li class="breadcrumb-item" aria-current="page">Konsultasi</li>
+                                        <li class="breadcrumb-item" aria-current="page">Diagnosa</li>
                                     </ol>
                                 </nav>
                             </div>
                             <div class="col-3">
                                 <div class="text-center mb-n5">
                                     <img src="{{ asset('assets/themes/modernize/images/backgrounds/ChatBc.png') }}"
-                                         alt="Konsultasi" class="img-fluid mb-n4">
+                                         alt="Diagnosa" class="img-fluid mb-n4">
                                 </div>
                             </div>
                         </div>
@@ -32,7 +32,7 @@
 
                 <div class="card w-100 position-relative overflow-hidden">
                     <div class="px-4 py-3 border-bottom">
-                        <h5 class="card-title fw-semibold mb-0 lh-sm">Kelola Konsultasi User</h5>
+                        <h5 class="card-title fw-semibold mb-0 lh-sm">Kelola Diagnosa User</h5>
 
                     </div>
 
@@ -62,15 +62,15 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach ($data as $konsultasi)
+                                @foreach ($data as $diagnosa)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $konsultasi->created_at->translatedFormat('l, d M Y H:i') }}</td>
-                                        <td>{{ $konsultasi->user->name }}</td>
-                                        <td>{{ $konsultasi->hama->nama }}</td>
-                                        <td class="text-center">{{ $konsultasi->persentase }}%</td>
+                                        <td>{{ $diagnosa->created_at->translatedFormat('l, d M Y H:i') }}</td>
+                                        <td>{{ $diagnosa->user->name }}</td>
+                                        <td>{{ $diagnosa->hama->nama }}</td>
+                                        <td class="text-center">{{ $diagnosa->persentase }}%</td>
                                         <td class="text-end">
-                                            <a href="{{ route('konsultasi.show', $konsultasi) }}" class="btn btn-sm btn-success">
+                                            <a href="{{ route('diagnosa.show', $diagnosa) }}" class="btn btn-sm btn-success">
                                                 <i class="ti ti-eye"></i>
                                             </a>
                                         </td>

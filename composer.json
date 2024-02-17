@@ -29,6 +29,7 @@
             "Database\\Seeders\\": "database/seeders/"
         },
         "files": [
+            "app/Helpers/Diagnosa.php",
             "app/Helpers/Helper.php"
         ]
     },

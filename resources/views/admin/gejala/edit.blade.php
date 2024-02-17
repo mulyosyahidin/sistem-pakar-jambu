@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.satoshi')
 @section('title', 'Edit Data Gejala')
 
 @section('content')
@@ -135,8 +135,14 @@
                         <select name="media_type" class="form-select @error('media_type') is-invalid @enderror"
                                 required>
                             <option value="">Pilih Jenis</option>
-                            <option value="image" {{ old('media_type', $gejala->media_type) == 'image' ? 'selected' : '' }}>Gambar</option>
-                            <option value="video" {{ old('media_type', $gejala->media_type) == 'video' ? 'selected' : '' }}>Video</option>
+                            <option
+                                value="image" {{ old('media_type', $gejala->media_type) == 'image' ? 'selected' : '' }}>
+                                Gambar
+                            </option>
+                            <option
+                                value="video" {{ old('media_type', $gejala->media_type) == 'video' ? 'selected' : '' }}>
+                                Video
+                            </option>
                         </select>
 
                         @error('media_type')
@@ -154,10 +160,12 @@
                 </div>
                 <div class="col-md-8 col-xl-5">
                     <div class="">
-                        <input type="file" name="media_file" class="form-control @error('media_file') is-invalid @enderror">
+                        <input type="file" name="media_file"
+                               class="form-control @error('media_file') is-invalid @enderror">
                         @if($gejala->media_type == 'image')
                             <small class="text-muted">
-                                <a href="{{ asset($gejala->media_url) }}" target="_blank">Lihat Foto.</a> Pilih foto yang baru untuk mengganti yang lama.
+                                <a href="{{ asset($gejala->media_url) }}" target="_blank">Lihat Foto.</a> Pilih foto
+                                yang baru untuk mengganti yang lama.
                             </small>
                         @endif
 
@@ -176,7 +184,8 @@
                 </div>
                 <div class="col-md-8 col-xl-5">
                     <div class="">
-                        <input type="url" name="media_url" value="{{ old('media_url', ($gejala->media_type == 'video' ? $gejala->media_url : '')) }}"
+                        <input type="url" name="media_url"
+                               value="{{ old('media_url', ($gejala->media_type == 'video' ? $gejala->media_url : '')) }}"
                                class="form-control @error('media_url') is-invalid @enderror">
 
                         @error('media_url')

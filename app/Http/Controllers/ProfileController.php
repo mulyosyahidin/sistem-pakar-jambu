@@ -17,7 +17,7 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
-        return view('admin.profil.edit', [
+        return view('profil.edit', [
             'user' => $request->user(),
         ]);
     }
@@ -43,7 +43,7 @@ class ProfileController extends Controller
             ]);
         }
 
-        return Redirect::route('admin.profil.edit')->with('success', 'Berhasil memperbarui profil');
+        return Redirect::route('profil.edit')->with('success', 'Berhasil memperbarui profil');
     }
 
     public function deleteProfilePicture(Request $request)
@@ -57,6 +57,6 @@ class ProfileController extends Controller
             ]);
         }
 
-        return Redirect::route('admin.profil.edit')->with('success', 'Berhasil menghapus foto profil');
+        return Redirect::route('profil.edit')->with('success', 'Berhasil menghapus foto profil');
     }
 }

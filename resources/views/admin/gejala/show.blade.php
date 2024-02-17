@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.satoshi')
 @section('title', 'Data Gejala')
 
 @section('content')
@@ -63,7 +63,8 @@
                     <tr>
                         <th>Video</th>
                         <td>
-                            <a href="{{ asset($gejala->media_url) }}" target="_blank">{{ $gejala->media_url }} <i class="bi bi-box-arrow-up-right"></i></a>
+                            <a href="{{ asset($gejala->media_url) }}" target="_blank">{{ $gejala->media_url }} <i
+                                    class="bi bi-box-arrow-up-right"></i></a>
                         </td>
                     </tr>
                 @endif

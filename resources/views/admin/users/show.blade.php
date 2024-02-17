@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.satoshi')
 @section('title', 'Data User')
 
 @section('content')
@@ -28,7 +28,8 @@
                         <th>Foto Profil</th>
                         <td>
                             <a href="{{ asset($user->profilePictureUrl) }}" target="_blank">
-                                <img src="{{ asset($user->profilePictureUrl) }}" alt="{{ $user->name }}" class="img-fluid rounded" width="100" height="100">
+                                <img src="{{ asset($user->profilePictureUrl) }}" alt="{{ $user->name }}"
+                                     class="img-fluid rounded" width="100" height="100">
                             </a>
                         </td>
                     </tr>
@@ -37,10 +38,10 @@
                     <th>Email</th>
                     <td>{{ $user->email }}</td>
                 </tr>
-               <tr>
-                   <th>Terdaftar Pada</th>
-                   <td>{{ $user->created_at->translatedFormat('l, d F Y H:i') }}</td>
-               </tr>
+                <tr>
+                    <th>Terdaftar Pada</th>
+                    <td>{{ $user->created_at->translatedFormat('l, d F Y H:i') }}</td>
+                </tr>
             </table>
         </div>
 
@@ -48,23 +49,23 @@
             <div class="card-body p-0 p-xxl-6">
                 <div class="d-flex justify-content-between align-items-center mb-5">
                     <div>
-                        <h5>Riwayat Konsultasi</h5>
+                        <h5>Riwayat Diagnosa</h5>
                     </div>
                 </div>
                 <div class="vstack gap-6">
-                    @forelse($user->konsultasi as $konsultasi)
+                    @forelse($user->diagnosa as $diagnosa)
                         <div class="hover">
                             <div class="d-flex align-items-center gap-3">
 
                                 <div>
-                                    <h6 class="progress-text mb-1 d-block">{{ $konsultasi->created_at->translatedFormat('l, d M Y H:i') }}</h6>
-                                    <p class="text-muted text-xs">{{ $konsultasi->hama->nama }}</p>
+                                    <h6 class="progress-text mb-1 d-block">{{ $diagnosa->created_at->translatedFormat('l, d M Y H:i') }}</h6>
+                                    <p class="text-muted text-xs">{{ $diagnosa->hama->nama }}</p>
                                 </div>
                             </div>
                         </div>
                     @empty
                         <div class="text-center">
-                            <p class="text-muted mb-0">Tidak ada data konsultasi.</p>
+                            <p class="text-muted mb-0">Tidak ada data diagnosa.</p>
                         </div>
                     @endforelse
                 </div>

@@ -34,13 +34,15 @@
 <body class="bg-body-tertiary">
 
 <div class="d-flex flex-column flex-lg-row h-lg-100 gap-1">
-    @include('layouts.includes.admin.sidebar')
+    @include(getSidebarFileName())
 
     <div class="flex-lg-fill overflow-x-auto ps-lg-1 vstack vh-lg-100 position-relative">
         <div class="d-none d-lg-block d-lg-flex py-3">
             <div class="hstack flex-fill justify-content-end flex-nowrap gap-6 ms-auto px-6 px-xxl-8">
-                <div class="dropdown"><a href="#" class="nav-link" data-bs-toggle="dropdown"
-                                                aria-expanded="false"><i class="bi bi-sun-fill"></i></a>
+                <div class="dropdown">
+                    <a href="#" class="nav-link" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-sun-fill"></i>
+                    </a>
                     <div class="dropdown-menu">
                         <button type="button" class="dropdown-item d-flex align-items-center"
                                 data-bs-theme-value="light">Light
@@ -55,16 +57,18 @@
                 </div>
 
                 <div class="dropdown">
-                    <a class="avatar avatar-sm text-bg-dark rounded-circle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
+                    <a class="avatar avatar-sm text-bg-dark rounded-circle" href="#" role="button"
+                       data-bs-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
                         <img src="{{ auth()->user()->profilePictureUrl }}" alt="{{ auth()->user()->name }}">
                     </a>
                     <div class="dropdown-menu dropdown-menu-end">
                         <div class="dropdown-header"><span class="d-block text-sm text-muted mb-1">Login sebagai</span>
                             <span class="d-block text-heading fw-semibold">{{ auth()->user()->name }}</span></div>
                         <div class="dropdown-divider"></div>
-                      <a
-                            class="dropdown-item" href="{{ route('admin.profil.edit') }}"><i class="bi bi-pencil me-3"></i> Edit Profil</a>
-                        <a class="dropdown-item logout-link" href="#"><i class="bi bi-box-arrow-right me-3"></i> Keluar</a></div>
+                        <a class="dropdown-item" href="{{ route('profil.edit') }}"><i class="bi bi-pencil me-3"></i>
+                            Edit Profil</a>
+                        <a class="dropdown-item logout-link" href="#"><i class="bi bi-box-arrow-right me-3"></i> Keluar</a>
+                    </div>
                 </div>
             </div>
         </div>

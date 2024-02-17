@@ -1,11 +1,16 @@
 @extends('layouts.satoshi')
-@section('title', 'Kelola Data Users')
+@section('title', 'Hasil Diagnosa')
 
 @section('content')
     <main class="container-fluid p-0">
         <div class="px-6 px-lg-7 pt-8 border-bottom pb-5">
             <div class="d-flex align-items-center">
-                <h1>Users</h1>
+                <h1>Hasil Diagnosa</h1>
+
+                <div class="hstack gap-2 ms-auto">
+                    <a href="{{ route('user.diagnosa.create') }}" class="btn btn-sm btn-primary">
+                        <i class="bi bi-plus-lg me-2"></i> Diagnosa Baru</a>
+                </div>
             </div>
         </div>
         <div class="table-responsive">
@@ -17,9 +22,9 @@
                             <span>#</span>
                         </div>
                     </th>
-                    <th scope="col">Nama</th>
-                    <th scope="col">Email</th>
-                    <th scope="col" class="text-center">Jumlah Diagnosa</th>
+                    <th scope="col">Tanggal</th>
+                    <th scope="col">Hama</th>
+                    <th scope="col">Persentase</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -31,11 +36,11 @@
                                 <div><span class="d-block text-heading fw-bold">{{ $loop->iteration }}</span></div>
                             </div>
                         </td>
-                        <td class="text-xs">{{ $item->name }}</td>
-                        <td>{{ $item->email }}</td>
-                        <td class="text-center">{{ $item->diagnosa_count }}</td>
+                        <td class="text-xs">{{ $item->created_at->translatedFormat('l, d M Y H:i') }}</td>
+                        <td>{{ $item->hama->nama }}</td>
+                        <td>{{ $item->persentase }}%</td>
                         <td class="text-end">
-                            <a href="{{ route('admin.users.show', $item) }}" class="btn btn-xs btn-success text-white">
+                            <a href="{{ route('user.diagnosa.show', $item) }}" class="btn btn-xs btn-success text-white">
                                 <i class="bi bi-eye"></i>
                             </a>
 
@@ -72,7 +77,7 @@
                 e.preventDefault();
 
                 let id = this.dataset.id;
-                let url = '{{ route('admin.users.destroy', ':id') }}';
+                let url = '{{ route('user.diagnosa.destroy', ':id') }}';
                 url = url.replace(':id', id);
 
                 Swal.fire({

@@ -21,9 +21,7 @@
                             <img src="{{ auth()->user()->profilePictureUrl }}" alt="{{ auth()->user()->name }}">
                         </div>
                     </div>
-                    <div class="d-none d-sm-block ms-3">
-                        <span class="h6">{{ auth()->user()->name }}</span>
-                    </div>
+                    <div class="d-none d-sm-block ms-3"><span class="h6">{{ auth()->user()->name }}</span></div>
                     <div class="d-none d-md-block ms-md-2">
                         <i class="bi bi-chevron-down text-muted text-xs"></i>
                     </div>
@@ -46,44 +44,16 @@
         <div class="collapse navbar-collapse overflow-x-hidden" id="sidebarCollapse">
             <ul class="navbar-nav">
                 <li class="nav-item my-1">
-                    <a class="nav-link d-flex align-items-center rounded-pill {{ activeClass('admin.dashboard') }}" href="{{ route('admin.dashboard') }}">
+                    <a class="nav-link d-flex align-items-center rounded-pill {{ activeClass('user.dashboard') }}" href="{{ route('user.dashboard') }}">
                         <i class="bi bi-house-fill"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
 
                 <li class="nav-item my-1">
-                    <a class="nav-link d-flex align-items-center rounded-pill {{ activeClass('admin.hama.*') }}" href="{{ route('admin.hama.index') }}">
-                        <i class="bi bi-bag-x-fill"></i>
-                        <span>Hama</span>
-                    </a>
-                </li>
-
-                <li class="nav-item my-1">
-                    <a class="nav-link d-flex align-items-center rounded-pill {{ activeClass(['admin.gejala.*', 'admin.kategori-gejala.*']) }}" href="{{ route('admin.gejala.index') }}">
+                    <a class="nav-link d-flex align-items-center rounded-pill {{ activeClass('user.diagnosa.*') }}" href="{{ route('user.diagnosa.index') }}">
                         <i class="bi bi-question-circle-fill"></i>
-                        <span>Gejala</span>
-                    </a>
-                </li>
-
-                <li class="nav-item my-1">
-                    <a class="nav-link d-flex align-items-center rounded-pill {{ activeClass('admin.solusi.*') }}" href="{{ route('admin.solusi.index') }}">
-                        <i class="bi bi-check-square-fill"></i>
-                        <span>Solusi</span>
-                    </a>
-                </li>
-
-                <li class="nav-item my-1">
-                    <a class="nav-link d-flex align-items-center rounded-pill {{ activeClass('admin.basis-pengetahuan.*') }}" href="{{ route('admin.basis-pengetahuan.index') }}">
-                        <i class="bi bi-bookmark-fill"></i>
-                        <span>Basis Pengetahuan</span>
-                    </a>
-                </li>
-
-                <li class="nav-item my-1">
-                    <a class="nav-link d-flex align-items-center rounded-pill {{ activeClass('admin.users.*') }}" href="{{ route('admin.users.index') }}">
-                        <i class="bi bi-people-fill"></i>
-                        <span>Users</span>
+                        <span>Riwayat Diagnosa</span>
                     </a>
                 </li>
             </ul>

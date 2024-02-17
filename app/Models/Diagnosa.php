@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Konsultasi extends Model
+class Diagnosa extends Model
 {
     use HasFactory;
 
@@ -17,7 +17,7 @@ class Konsultasi extends Model
      *
      * @var string
      */
-    protected $table = 'konsultasi';
+    protected $table = 'diagnosa';
 
     /**
      * Kolom tabel
@@ -32,17 +32,17 @@ class Konsultasi extends Model
 
     /**
      * Relasi many-to-many ke model Gejala
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function gejala(): BelongsToMany
     {
-        return $this->belongsToMany(Gejala::class, 'gejala_konsultasi', 'id_konsultasi', 'id_gejala');
+        return $this->belongsToMany(Gejala::class, 'gejala_diagnosa', 'id_diagnosa', 'id_gejala');
     }
 
     /**
-     * User yang memiliki konsultasi
-     * 
+     * User yang memiliki diagnosa
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function user(): BelongsTo
@@ -51,8 +51,8 @@ class Konsultasi extends Model
     }
 
     /**
-     * Hama yang dihasilkan dari konsultasi
-     * 
+     * Hama yang dihasilkan dari diagnosa
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function hama(): BelongsTo

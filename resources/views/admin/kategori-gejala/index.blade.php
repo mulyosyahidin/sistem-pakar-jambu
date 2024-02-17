@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.satoshi')
 @section('title', 'Kelola Data Kategori Gejala')
 
 @section('content')
@@ -38,7 +38,8 @@
                         <td class="text-xs">{{ $item->nama }}</td>
                         <td class="text-xs">{{ $item->gejala_count }}</td>
                         <td class="text-end">
-                            <a href="{{ route('admin.kategori-gejala.edit', $item) }}" class="btn btn-xs btn-warning text-white">
+                            <a href="{{ route('admin.kategori-gejala.edit', $item) }}"
+                               class="btn btn-xs btn-warning text-white">
                                 <i class="bi bi-pencil"></i>
                             </a>
 

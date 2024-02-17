@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Enums\UserRole;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
@@ -46,6 +47,9 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        return match ($request->user()->role) {
+            UserRole::ADMIN->value => redirect()->route('admin.dashboard'),
+            UserRole::USER->value => redirect()->route('user.dashboard'),
+        };
     }
 }

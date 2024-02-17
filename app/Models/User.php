@@ -48,13 +48,13 @@ class User extends Authenticatable
     ];
 
     /**
-     * Get the konsultasi for the user.
+     * Get the diagnosa for the user.
      *
      * @return HasMany
      */
-    public function konsultasi(): HasMany
+    public function diagnosa(): HasMany
     {
-        return $this->hasMany(Konsultasi::class);
+        return $this->hasMany(Diagnosa::class);
     }
 
     public function profilePictureUrl(): Attribute

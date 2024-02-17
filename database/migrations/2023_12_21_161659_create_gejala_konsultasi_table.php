@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('gejala_konsultasi', function (Blueprint $table) {
-            $table->unsignedInteger('id_konsultasi')->nullable();
+        Schema::create('gejala_diagnosa', function (Blueprint $table) {
+            $table->unsignedInteger('id_diagnosa')->nullable();
             $table->unsignedInteger('id_gejala')->nullable();
 
-            $table->foreign('id_konsultasi')->references('id')->on('konsultasi')->onUpdate('NO ACTION')->onDelete('CASCADE');
+            $table->foreign('id_diagnosa')->references('id')->on('diagnosa')->onUpdate('NO ACTION')->onDelete('CASCADE');
             $table->foreign('id_gejala')->references('id')->on('gejala')->onUpdate('NO ACTION')->onDelete('CASCADE');
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gejala_konsultasi');
+        Schema::dropIfExists('gejala_diagnosa');
     }
 };

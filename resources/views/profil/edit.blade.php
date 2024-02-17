@@ -1,9 +1,9 @@
-@extends('layouts.admin')
+@extends('layouts.satoshi')
 @section('title', 'Edit Profil')
 
 @section('content')
     <main class="container-fluid px-3 py-5 p-lg-6 p-xxl-8">
-        <form action="{{ route('admin.profil.update') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('profil.update') }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
@@ -79,7 +79,8 @@
                     <div class="">
                         <div class="d-flex align-items-center">
                             <a href="#" class="avatar avatar-lg bg-warning rounded-circle text-white">
-                                <img src="{{ auth()->user()->profilePictureUrl }}" alt="Foto profil" class="img-fluid profile-picture"/>
+                                <img src="{{ auth()->user()->profilePictureUrl }}" alt="Foto profil"
+                                     class="img-fluid profile-picture"/>
                             </a>
                             <div class="hstack gap-2 ms-5">
                                 <label for="file_upload" class="btn btn-sm btn-neutral">
@@ -87,7 +88,8 @@
                                     <input type="file" name="file" id="file_upload" class="visually-hidden">
                                 </label>
                                 @if(auth()->user()->profile_picture)
-                                    <a href="#" class="btn d-inline-flex btn-sm btn-neutral text-danger btn-remove-profile-picture">
+                                    <a href="#"
+                                       class="btn d-inline-flex btn-sm btn-neutral text-danger btn-remove-profile-picture">
                                     <span>
                                         <i class="bi bi-trash"></i>
                                     </span>
@@ -108,7 +110,7 @@
 @endsection
 
 @section('custom_html')
-    <form action="{{ route('admin.profil.delete-profile-picture') }}" method="post" id="delete-profile-picture-form">
+    <form action="{{ route('profil.delete-profile-picture') }}" method="post" id="delete-profile-picture-form">
         @csrf
         @method('DELETE')
     </form>

@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.satoshi')
 @section('title', 'Tambah Data Hama')
 
 @section('content')
@@ -56,7 +56,7 @@
                             <option value="">Pilih Kategori</option>
                             @foreach($kategori as $item)
                                 <option value="{{ $item->id }}"
-                                        {{ old('id_kategori') == $item->id ? 'selected' : '' }}>
+                                    {{ old('id_kategori') == $item->id ? 'selected' : '' }}>
                                     {{ $item->nama }}
                                 </option>
                             @endforeach
@@ -153,7 +153,8 @@
                 </div>
                 <div class="col-md-8 col-xl-5">
                     <div class="">
-                        <input type="file" name="media_file" class="form-control @error('media_file') is-invalid @enderror">
+                        <input type="file" name="media_file"
+                               class="form-control @error('media_file') is-invalid @enderror">
 
                         @error('media_file')
                         <div class="invalid-feedback">{{ $message }}</div>

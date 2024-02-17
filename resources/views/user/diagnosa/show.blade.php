@@ -1,5 +1,5 @@
 @extends('layouts.satoshi')
-@section('title', 'Data Hama')
+@section('title', 'Data Diagnosa')
 
 @section('content')
     <main class="container-fluid px-6 pb-10">
@@ -8,17 +8,14 @@
                 <div class="col">
                     <div class="d-flex align-items-center gap-4">
                         <div>
-                            <a href="{{ route('admin.hama.index') }}" class="btn-close text-xs"></a>
+                            <a href="{{ route('user.diagnosa.index') }}" class="btn-close text-xs"></a>
                         </div>
                         <div class="vr opacity-20 my-1"></div>
-                        <h1 class="h4 ls-tight">{{ $hama->nama }}</h1>
+                        <h1 class="h4 ls-tight">Hasil Diagnosa</h1>
                     </div>
                 </div>
                 <div class="col-auto d-none d-md-block">
                     <div class="hstack gap-2 justify-content-end">
-                        <a href="{{ route('admin.hama.edit', $hama) }}" class="btn btn-sm btn-warning text-white">
-                            <span>Edit</span>
-                        </a>
                         <a href="#" class="btn btn-sm btn-danger text-white btn-delete">
                             <span>Hapus</span>
                         </a>
@@ -30,27 +27,17 @@
         <div class="table-responsive">
             <table class="table table-condensed table-hover">
                 <tr>
-                    <th>Nama</th>
-                    <td>{{ $hama->nama }}</td>
+                    <th>Tanggal</th>
+                    <td><b>{{ $diagnosa->created_at->translatedFormat('l, d M Y H:i') }}</b></td>
                 </tr>
                 <tr>
-                    <th>Kode</th>
-                    <td>{{ $hama->kode }}</td>
+                    <th>Hama Terdiagnosa</th>
+                    <td><b>{{ $diagnosa->hama->nama }}</b></td>
                 </tr>
-                @if($hama->deskripsi)
-                    <tr>
-                        <th>Deskripsi</th>
-                        <td>{{ $hama->deskripsi }}</td>
-                    </tr>
-                @endif
-                @if($hama->foto)
-                    <tr>
-                        <th>Foto</th>
-                        <td>
-                            <a href="{{ asset($hama->foto) }}" target="_blank">{{ $hama->foto }}</a>
-                        </td>
-                    </tr>
-                @endif
+                <tr>
+                    <th>Persentase</th>
+                    <td><b>{{ $diagnosa->persentase }}%</b></td>
+                </tr>
             </table>
         </div>
 
@@ -58,59 +45,58 @@
             <div class="card-body p-0 p-xxl-6">
                 <div class="d-flex justify-content-between align-items-center mb-5">
                     <div>
-                        <h5>Solusi Hama</h5>
-                    </div>
-                    <div class="hstack align-items-center">
-                        <a href="{{ route('admin.hama.solusi.edit', $hama) }}" class="btn btn-sm btn-neutral"><i
-                                class="bi bi-pencil"></i>
-                        </a>
+                        <h5>Gejala</h5>
                     </div>
                 </div>
                 <div class="vstack gap-6">
-                    @forelse($hama->solusi as $solusi)
+                    @foreach ($diagnosa->gejala as $gejala)
                         <div class="hover">
                             <div class="d-flex align-items-center gap-3">
-
                                 <div>
-                                    <h6 class="progress-text mb-1 d-block">{{ $solusi->kode }}</h6>
-                                    <p class="text-muted text-xs">{{ \Str::limit($solusi->solusi, 40) }}</p>
+                                    <h6 class="progress-text mb-1 d-block">{{ $gejala->kode }}</h6>
+                                    <p class="text-muted text-xs">{{ $gejala->nama }}</p>
                                 </div>
                             </div>
                         </div>
-                    @empty
-                        <div class="text-center">
-                            <p class="text-muted mb-0">Tidak ada data solusi.</p>
-                        </div>
-                    @endforelse
+                        @endforeach
                 </div>
             </div>
         </div>
 
-        <div class="d-flex d-md-none justify-content-end gap-2">
-            <div class="hstack gap-2 justify-content-end">
-                <a href="{{ route('admin.hama.edit', $hama) }}" class="btn btn-sm btn-warning text-white">
-                    <span>Edit</span>
-                </a>
-                <a href="#" class="btn btn-sm btn-danger text-white btn-delete">
-                    <span>Hapus</span>
-                </a>
+        <div class="card border-0 border-xxl h-md-100 mt-5">
+            <div class="card-body p-0 p-xxl-6">
+                <div class="d-flex justify-content-between align-items-center mb-5">
+                    <div>
+                        <h5>Solusi Penanganan</h5>
+                    </div>
+                </div>
+                <div class="vstack gap-6">
+                    @foreach ($diagnosa->hama->solusi as $solusi)
+                        <div class="hover">
+                            <div class="d-flex align-items-center gap-3">
+                                <div>
+                                    <span class="badge bg-info">
+                                         {{ $loop->iteration }}
+                                    </span>
+                                    <p class="text-muted text-xs">{{ $solusi->solusi }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
             </div>
         </div>
     </main>
 @endsection
 
 @section('custom_html')
-    <form action="{{ route('admin.hama.destroy', $hama) }}" method="post" id="delete-form">
+    <form action="{{ route('user.diagnosa.destroy', $diagnosa) }}" method="post" id="delete-form">
         @csrf
         @method('DELETE')
     </form>
 @endsection
 
 @push('custom_js')
-    <script>
-        $("#dt-data").DataTable();
-    </script>
-
     <script>
         let btnDelete = document.querySelectorAll('.btn-delete');
         let deleteForm = document.querySelector('#delete-form');

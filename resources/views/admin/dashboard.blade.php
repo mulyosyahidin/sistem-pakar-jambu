@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.satoshi')
 @section('title', 'Admin Dashboard')
 
 @section('content')
@@ -42,9 +42,9 @@
                 <div class="col">
                     <div class="card">
                         <div class="p-4">
-                            <h6 class="text-limit text-muted mb-3">Konsultasi</h6>
+                            <h6 class="text-limit text-muted mb-3">Diagnosa</h6>
                             <span
-                                class="d-block h3 ls-tight fw-bold">{{ $count['konsultasi'] }}</span>
+                                class="d-block h3 ls-tight fw-bold">{{ $count['diagnosa'] }}</span>
                         </div>
                     </div>
                 </div>
@@ -55,7 +55,7 @@
                         <div class="card-body pb-0">
                             <div class="row g-3 justify-content-between align-items-center">
                                 <div class="col-12 col-sm">
-                                    <h5>Grafik Konsultasi Seminggu Terakhir</h5>
+                                    <h5>Grafik Diagnosa Seminggu Terakhir</h5>
                                 </div>
                             </div>
                             <div class="mx-n4">
@@ -71,7 +71,7 @@
                         <div class="card-body pb-0">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>
-                                    <h5>Konsultasi Terbaru</h5>
+                                    <h5>Diagnosa Terbaru</h5>
                                 </div>
                             </div>
                             <div class="list-group list-group-flush">
@@ -81,14 +81,16 @@
                                         <div
                                             class="icon icon-shape rounded-circle icon-sm flex-none w-rem-10 h-rem-10 text-sm bg-primary bg-opacity-25 text-primary">
                                             <i class="bi bi-send-fill"></i></div>
-                                        <div class=""><span class="d-block text-heading text-sm fw-semibold">Bitcoin </span><span
+                                        <div class=""><span
+                                                class="d-block text-heading text-sm fw-semibold">Bitcoin </span><span
                                                 class="d-none d-sm-block text-muted text-xs">2 days ago</span>
                                         </div>
                                     </div>
                                     <div class="d-none d-md-block text-sm">0xd029384sd343fd...eq23</div>
                                     <div class="d-none d-md-block"><span
                                             class="badge bg-body-secondary text-warning">Pending</span></div>
-                                    <div class="text-end"><span class="d-block text-heading text-sm fw-bold">+0.2948 BTC </span><span
+                                    <div class="text-end"><span
+                                            class="d-block text-heading text-sm fw-bold">+0.2948 BTC </span><span
                                             class="d-block text-muted text-xs">+$10,930.90</span></div>
                                 </div>
                                 <div
@@ -97,14 +99,16 @@
                                         <div
                                             class="icon icon-shape rounded-circle icon-sm flex-none w-rem-10 h-rem-10 text-sm bg-primary bg-opacity-25 text-primary">
                                             <i class="bi bi-send-fill"></i></div>
-                                        <div class=""><span class="d-block text-heading text-sm fw-semibold">Cardano </span><span
+                                        <div class=""><span
+                                                class="d-block text-heading text-sm fw-semibold">Cardano </span><span
                                                 class="d-none d-sm-block text-muted text-xs">2 days ago</span>
                                         </div>
                                     </div>
                                     <div class="d-none d-md-block text-sm">0xd029384sd343fd...eq23</div>
                                     <div class="d-none d-md-block"><span
                                             class="badge bg-body-secondary text-danger">Canceled</span></div>
-                                    <div class="text-end"><span class="d-block text-heading text-sm fw-bold">+0.2948 BTC </span><span
+                                    <div class="text-end"><span
+                                            class="d-block text-heading text-sm fw-bold">+0.2948 BTC </span><span
                                             class="d-block text-muted text-xs">+$10,930.90</span></div>
                                 </div>
                                 <div
@@ -113,14 +117,16 @@
                                         <div
                                             class="icon icon-shape rounded-circle icon-sm flex-none w-rem-10 h-rem-10 text-sm bg-primary bg-opacity-25 text-primary">
                                             <i class="bi bi-send-fill"></i></div>
-                                        <div class=""><span class="d-block text-heading text-sm fw-semibold">Binance </span><span
+                                        <div class=""><span
+                                                class="d-block text-heading text-sm fw-semibold">Binance </span><span
                                                 class="d-none d-sm-block text-muted text-xs">2 days ago</span>
                                         </div>
                                     </div>
                                     <div class="d-none d-md-block text-sm">0xd029384sd343fd...eq23</div>
                                     <div class="d-none d-md-block"><span
                                             class="badge bg-body-secondary text-success">Successful</span></div>
-                                    <div class="text-end"><span class="d-block text-heading text-sm fw-bold">+0.2948 BTC </span><span
+                                    <div class="text-end"><span
+                                            class="d-block text-heading text-sm fw-bold">+0.2948 BTC </span><span
                                             class="d-block text-muted text-xs">+$10,930.90</span></div>
                                 </div>
                                 <div
@@ -129,14 +135,16 @@
                                         <div
                                             class="icon icon-shape rounded-circle icon-sm flex-none w-rem-10 h-rem-10 text-sm bg-primary bg-opacity-25 text-primary">
                                             <i class="bi bi-send-fill"></i></div>
-                                        <div class=""><span class="d-block text-heading text-sm fw-semibold">Bitcoin </span><span
+                                        <div class=""><span
+                                                class="d-block text-heading text-sm fw-semibold">Bitcoin </span><span
                                                 class="d-none d-sm-block text-muted text-xs">2 days ago</span>
                                         </div>
                                     </div>
                                     <div class="d-none d-md-block text-sm">0xd029384sd343fd...eq23</div>
                                     <div class="d-none d-md-block"><span
                                             class="badge bg-body-secondary text-warning">Pending</span></div>
-                                    <div class="text-end"><span class="d-block text-heading text-sm fw-bold">+0.2948 BTC </span><span
+                                    <div class="text-end"><span
+                                            class="d-block text-heading text-sm fw-bold">+0.2948 BTC </span><span
                                             class="d-block text-muted text-xs">+$10,930.90</span></div>
                                 </div>
                                 <div
@@ -145,14 +153,16 @@
                                         <div
                                             class="icon icon-shape rounded-circle icon-sm flex-none w-rem-10 h-rem-10 text-sm bg-primary bg-opacity-25 text-primary">
                                             <i class="bi bi-send-fill"></i></div>
-                                        <div class=""><span class="d-block text-heading text-sm fw-semibold">Bitcoin </span><span
+                                        <div class=""><span
+                                                class="d-block text-heading text-sm fw-semibold">Bitcoin </span><span
                                                 class="d-none d-sm-block text-muted text-xs">2 days ago</span>
                                         </div>
                                     </div>
                                     <div class="d-none d-md-block text-sm">0xd029384sd343fd...eq23</div>
                                     <div class="d-none d-md-block"><span
                                             class="badge bg-body-secondary text-danger">Canceled</span></div>
-                                    <div class="text-end"><span class="d-block text-heading text-sm fw-bold">+0.2948 BTC </span><span
+                                    <div class="text-end"><span
+                                            class="d-block text-heading text-sm fw-bold">+0.2948 BTC </span><span
                                             class="d-block text-muted text-xs">+$10,930.90</span></div>
                                 </div>
                                 <div
@@ -161,14 +171,16 @@
                                         <div
                                             class="icon icon-shape rounded-circle icon-sm flex-none w-rem-10 h-rem-10 text-sm bg-primary bg-opacity-25 text-primary">
                                             <i class="bi bi-send-fill"></i></div>
-                                        <div class=""><span class="d-block text-heading text-sm fw-semibold">Bitcoin </span><span
+                                        <div class=""><span
+                                                class="d-block text-heading text-sm fw-semibold">Bitcoin </span><span
                                                 class="d-none d-sm-block text-muted text-xs">2 days ago</span>
                                         </div>
                                     </div>
                                     <div class="d-none d-md-block text-sm">0xd029384sd343fd...eq23</div>
                                     <div class="d-none d-md-block"><span
                                             class="badge bg-body-secondary text-success">Successful</span></div>
-                                    <div class="text-end"><span class="d-block text-heading text-sm fw-bold">+0.2948 BTC </span><span
+                                    <div class="text-end"><span
+                                            class="d-block text-heading text-sm fw-bold">+0.2948 BTC </span><span
                                             class="d-block text-muted text-xs">+$10,930.90</span></div>
                                 </div>
                             </div>

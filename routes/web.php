@@ -1,16 +1,16 @@
 <?php
 
-use App\Http\Controllers\BasisPengetahuanController;
+use App\Http\Controllers\Admin\BasisPengetahuanController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\GejalaController;
+use App\Http\Controllers\Admin\HamaController;
+use App\Http\Controllers\Admin\KategoriGejalaController;
+use App\Http\Controllers\Admin\DiagnosaController;
+use App\Http\Controllers\Admin\SolusiController;
+use App\Http\Controllers\Admin\SolusiHamaController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\BerandaController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\GejalaController;
-use App\Http\Controllers\HamaController;
-use App\Http\Controllers\KategoriGejalaController;
-use App\Http\Controllers\KonsultasiController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\SolusiController;
-use App\Http\Controllers\SolusiHamaController;
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,6 +25,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [BerandaController::class, 'index'])->name('home');
+
+Route::group(['middleware' => ['auth', 'role:user'], 'prefix' => 'user', 'as' => 'user.'], function () {
+    Route::get('/', [\App\Http\Controllers\User\DashboardController::class, 'index'])->name('dashboard');
+    Route::resource('diagnosa', \App\Http\Controllers\User\DiagnosaController::class)->except('edit', 'update');
+});
 
 Route::group(['middleware' => ['auth', 'role:admin'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -43,12 +48,14 @@ Route::group(['middleware' => ['auth', 'role:admin'], 'prefix' => 'admin', 'as' 
     Route::put('/basis-pengetahuan/{hama}', [BasisPengetahuanController::class, 'update'])->name('basis-pengetahuan.update');
 
     Route::resource('users', UserController::class)->only(['index', 'show', 'destroy']);
-    Route::get('/konsultasi', [KonsultasiController::class, 'index'])->name('konsultasi.index');
-    Route::get('/konsultasi/{konsultasi}', [KonsultasiController::class, 'show'])->name('konsultasi.show');
+    Route::get('/diagnosa', [DiagnosaController::class, 'index'])->name('diagnosa.index');
+    Route::get('/diagnosa/{diagnosa}', [DiagnosaController::class, 'show'])->name('diagnosa.show');
+});
 
-    Route::get('/profil', [ProfileController::class, 'edit'])->name('profil.edit');
-    Route::put('/profil', [ProfileController::class, 'update'])->name('profil.update');
-    Route::delete('/profil/delete-profile-picture', [ProfileController::class, 'deleteProfilePicture'])->name('profil.delete-profile-picture');
+Route::group(['middleware' => ['auth'], 'prefix' => 'profil', 'as' => 'profil.'], function () {
+    Route::get('/', [ProfileController::class, 'edit'])->name('edit');
+    Route::put('/', [ProfileController::class, 'update'])->name('update');
+    Route::delete('/delete-profile-picture', [ProfileController::class, 'deleteProfilePicture'])->name('delete-profile-picture');
 });
 
 require __DIR__.'/auth.php';

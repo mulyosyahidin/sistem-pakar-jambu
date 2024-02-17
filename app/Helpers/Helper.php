@@ -49,6 +49,51 @@ if (!function_exists('getDashboardUrl')) {
 
         return match ($role) {
             UserRole::ADMIN->value => route('admin.dashboard'),
+            UserRole::USER->value => route('user.dashboard'),
         };
+    }
+}
+
+if (!function_exists('getSidebarFileName')) {
+
+    /**
+     * Get sidebar file name based on user role
+     *
+     * @param $role
+     * @return string
+     */
+    function getSidebarFileName($role = null): string
+    {
+        $role = $role ?? auth()->user()->role;
+
+        return match ($role) {
+            UserRole::ADMIN->value => 'layouts.includes.admin.sidebar',
+            UserRole::USER->value => 'layouts.includes.user.sidebar',
+        };
+    }
+}
+
+if ( !function_exists('getYoutubeVideoId')) {
+    /**
+     * Get youtube video id from youtube url
+     *
+     * @param $url
+     * @return string
+     */
+    function getYoutubeVideId($url): string
+    {
+        $videoId = '';
+
+        if (preg_match('/youtube\.com\/watch\?v=([^\&\?\/]+)/', $url, $id)) {
+            $videoId = $id[1];
+        } else if (preg_match('/youtube\.com\/embed\/([^\&\?\/]+)/', $url, $id)) {
+            $videoId = $id[1];
+        } else if (preg_match('/youtube\.com\/v\/([^\&\?\/]+)/', $url, $id)) {
+            $videoId = $id[1];
+        } else if (preg_match('/youtu\.be\/([^\&\?\/]+)/', $url, $id)) {
+            $videoId = $id[1];
+        }
+
+        return $videoId;
     }
 }

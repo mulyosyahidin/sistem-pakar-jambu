@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -12,7 +12,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $data = User::withCount('konsultasi')->where('role', 'user')->get();
+        $data = User::withCount('diagnosa')->where('role', 'user')->get();
 
         return view('admin.users.index', compact('data'));
     }
@@ -22,8 +22,8 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        $user->loadCount('konsultasi');
-        $user->load('konsultasi.hama');
+        $user->loadCount('diagnosa');
+        $user->load('diagnosa.hama');
 
         return view('admin.users.show', compact('user'));
     }

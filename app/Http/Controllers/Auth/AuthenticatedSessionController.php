@@ -32,6 +32,7 @@ class AuthenticatedSessionController extends Controller
 
         return match ($request->user()->role) {
             UserRole::ADMIN->value => redirect()->route('admin.dashboard'),
+            UserRole::USER->value => redirect()->route('user.dashboard'),
         };
     }
 

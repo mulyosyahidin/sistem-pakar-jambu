@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.satoshi')
 @section('title', 'Kelola Data Basis Pengetahuan')
 
 @section('content')
@@ -35,7 +35,8 @@
                         <td>{{ $item->kode }}</td>
                         <td>
                             @foreach ($item->gejala->sortBy('kode') as $gejala)
-                                <span class="btn btn-neutral btn-xs me-1 rounded-pill badge-gejala">{{ $gejala->kode }}</span>
+                                <span
+                                    class="btn btn-neutral btn-xs me-1 rounded-pill badge-gejala">{{ $gejala->kode }}</span>
                             @endforeach
                         </td>
                         <td class="text-end">

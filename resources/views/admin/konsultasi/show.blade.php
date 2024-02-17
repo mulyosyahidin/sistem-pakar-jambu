@@ -1,5 +1,5 @@
 @extends('layouts.modernize')
-@section('title', 'Hasil Konsultasi')
+@section('title', 'Hasil Diagnosa')
 
 @section('content')
     <div class="container-fluid">
@@ -9,7 +9,7 @@
                     <div class="card-body px-4 py-3">
                         <div class="row align-items-center">
                             <div class="col-9">
-                                <h4 class="fw-semibold mb-8">Hasil Konsultasi</h4>
+                                <h4 class="fw-semibold mb-8">Hasil Diagnosa</h4>
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item">
@@ -18,9 +18,9 @@
                                         </li>
                                         <li class="breadcrumb-item">
                                             <a class="text-muted text-decoration-none"
-                                               href="{{ route('hama.index') }}">Konsultasi</a>
+                                               href="{{ route('hama.index') }}">Diagnosa</a>
                                         </li>
-                                        <li class="breadcrumb-item" aria-current="page">#{{ $konsultasi->id }}</li>
+                                        <li class="breadcrumb-item" aria-current="page">#{{ $diagnosa->id }}</li>
                                     </ol>
                                 </nav>
                             </div>
@@ -36,9 +36,9 @@
 
                 <div class="card w-100 position-relative overflow-hidden">
                     <div class="px-4 py-3 border-bottom d-flex justify-content-between">
-                        <h5 class="card-title fw-semibold mb-0">Data Konsultasi</h5>
+                        <h5 class="card-title fw-semibold mb-0">Data Diagnosa</h5>
 
-                        <a href="{{ route('konsultasi.index') }}" class="btn btn-sm btn-primary">
+                        <a href="{{ route('diagnosa.index') }}" class="btn btn-sm btn-primary">
                             <i class="ti ti-arrow-left"></i> Kembali
                         </a>
                     </div>
@@ -50,22 +50,22 @@
                                 <tr>
                                     <th scope="row">User</th>
                                     <td>:</td>
-                                    <td><strong>{{ $konsultasi->user->name }}</strong></td>
+                                    <td><strong>{{ $diagnosa->user->name }}</strong></td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">Hasil Konsultasi</th>
+                                    <th scope="row">Hasil Diagnosa</th>
                                     <td>:</td>
-                                    <td><strong>{{ $konsultasi->hama->nama }}</strong></td>
+                                    <td><strong>{{ $diagnosa->hama->nama }}</strong></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Persentase</th>
                                     <td>:</td>
-                                    <td><strong>{{ $konsultasi->persentase }}%</strong></td>
+                                    <td><strong>{{ $diagnosa->persentase }}%</strong></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Jumlah Gejala</th>
                                     <td>:</td>
-                                    <td><strong>{{ $konsultasi->gejala_count }}</strong></td>
+                                    <td><strong>{{ $diagnosa->gejala_count }}</strong></td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -98,7 +98,7 @@
                                 <!--end::Table head-->
                                 <!--begin::Table body-->
                                 <tbody>
-                                @foreach ($konsultasiService->matrixNilaiCf() as $kodeGejala => $data)
+                                @foreach ($diagnosaService->matrixNilaiCf() as $kodeGejala => $data)
                                     <tr>
                                         <th class="text-center">{{ $kodeGejala }}</th>
                                         @foreach ($data as $nilai)
@@ -143,7 +143,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach ($konsultasi->gejala as $gejala)
+                                @foreach ($diagnosa->gejala as $gejala)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $gejala->kode }}</td>
@@ -164,10 +164,10 @@
 
                     <div class="card-body p-4">
                         <p>
-                            Berdasarkan hasil perhitungan, gejala-gejala yang dilakukan konsultasi tersebut menghasilkan
-                            hama <b>{{ $konsultasiService->hamaTertinggi()['hama']['nama'] }}</b> dengan nilai
-                            {{ $konsultasiService->hamaTertinggi()['cf_kombinasi']['result'] }} atau
-                            {{ $konsultasiService->hamaTertinggi()['cf_kombinasi']['persentase'] }}% keyakinan.
+                            Berdasarkan hasil perhitungan, gejala-gejala yang dilakukan diagnosa tersebut menghasilkan
+                            hama <b>{{ $diagnosaService->hamaTertinggi()['hama']['nama'] }}</b> dengan nilai
+                            {{ $diagnosaService->hamaTertinggi()['cf_kombinasi']['result'] }} atau
+                            {{ $diagnosaService->hamaTertinggi()['cf_kombinasi']['persentase'] }}% keyakinan.
                         </p>
                     </div>
                 </div>
@@ -179,17 +179,17 @@
                     <!--begin::Card body-->
                     <div class="card-body p-4">
                         <div class="accordion" id="perhitungan">
-                            @foreach ($konsultasiService->hitung() as $data)
+                            @foreach ($diagnosaService->hitung() as $data)
                                 <h2 class="accordion-header" id="heading-{{ $loop->index }}">
-                                    <button class="accordion-button {{ $konsultasiService->hamaTertinggi()['hama']['nama'] == $data['hama']->nama ? '' : 'collapsed' }}" type="button" data-bs-toggle="collapse"
+                                    <button class="accordion-button {{ $diagnosaService->hamaTertinggi()['hama']['nama'] == $data['hama']->nama ? '' : 'collapsed' }}" type="button" data-bs-toggle="collapse"
                                             data-bs-target="#collapse-{{ $loop->index }}"
-                                            aria-expanded="{{ $konsultasiService->hamaTertinggi()['hama']['nama'] == $data['hama']->nama ? 'true' : 'false' }}"
+                                            aria-expanded="{{ $diagnosaService->hamaTertinggi()['hama']['nama'] == $data['hama']->nama ? 'true' : 'false' }}"
                                             aria-controls="collapse-{{ $loop->index }}">
                                         {{ $data['hama']->nama }}
                                     </button>
                                 </h2>
                                 <div id="collapse-{{ $loop->index }}"
-                                     class="accordion-collapse collapse {{ $konsultasiService->hamaTertinggi()['hama']['nama'] == $data['hama']->nama ? 'show' : '' }}"
+                                     class="accordion-collapse collapse {{ $diagnosaService->hamaTertinggi()['hama']['nama'] == $data['hama']->nama ? 'show' : '' }}"
                                      aria-labelledby="heading-{{ $loop->index }}" data-bs-parent="#perhitungan">
                                     <div class="accordion-body">
                                         <h6 class="mb-2 lh-sm">Rule</h6>
