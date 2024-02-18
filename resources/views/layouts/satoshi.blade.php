@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f=satoshi@900,700,500,300,401,400&amp;display=swap">
 
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.0/css/dataTables.bootstrap5.min.css">
+
     @vite(['resources/js/app.js'])
     @yield('custom_head')
 
@@ -28,6 +30,26 @@
             margin-top: .25rem;
             font-size: 80%;
             color: #dc3545;
+        }
+
+        .table-bordered {
+            border: 1px solid #e3e7f0;
+        }
+
+        .table-bordered th, .table-bordered td {
+            border: 1px solid #e3e7f0;
+        }
+
+        .table-bordered th {
+            background-color: #f9fafc;
+        }
+
+        .table-bordered thead tr th {
+            border-bottom: 1px solid #e3e7f0 !important;
+        }
+
+        .my-table thead th {
+           font-weight: bold;
         }
     </style>
 </head>
@@ -90,7 +112,10 @@
 <script src="{{ asset('assets/themes/satoshi/js/switcher.js') }}"></script>
 
 <!-- Plugins -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.datatables.net/2.0.0/js/dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/2.0.0/js/dataTables.bootstrap5.min.js"></script>
 
 <script>
     let logoutLinks = document.querySelectorAll('.logout-link');

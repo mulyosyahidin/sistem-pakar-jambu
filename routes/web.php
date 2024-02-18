@@ -5,7 +5,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GejalaController;
 use App\Http\Controllers\Admin\HamaController;
 use App\Http\Controllers\Admin\KategoriGejalaController;
-use App\Http\Controllers\Admin\DiagnosaController;
+use App\Http\Controllers\Admin\DiagnosaController as AdminDiagnosaController;
 use App\Http\Controllers\Admin\SolusiController;
 use App\Http\Controllers\Admin\SolusiHamaController;
 use App\Http\Controllers\Admin\UserController;
@@ -48,8 +48,8 @@ Route::group(['middleware' => ['auth', 'role:admin'], 'prefix' => 'admin', 'as' 
     Route::put('/basis-pengetahuan/{hama}', [BasisPengetahuanController::class, 'update'])->name('basis-pengetahuan.update');
 
     Route::resource('users', UserController::class)->only(['index', 'show', 'destroy']);
-    Route::get('/diagnosa', [DiagnosaController::class, 'index'])->name('diagnosa.index');
-    Route::get('/diagnosa/{diagnosa}', [DiagnosaController::class, 'show'])->name('diagnosa.show');
+    Route::get('/diagnosa', [AdminDiagnosaController::class, 'index'])->name('diagnosa.index');
+    Route::get('/diagnosa/{diagnosa}', [AdminDiagnosaController::class, 'show'])->name('diagnosa.show');
 });
 
 Route::group(['middleware' => ['auth'], 'prefix' => 'profil', 'as' => 'profil.'], function () {

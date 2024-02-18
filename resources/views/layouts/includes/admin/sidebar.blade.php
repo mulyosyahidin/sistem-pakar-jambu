@@ -86,6 +86,13 @@
                         <span>Users</span>
                     </a>
                 </li>
+
+                <li class="nav-item my-1">
+                    <a class="nav-link d-flex align-items-center rounded-pill {{ activeClass('admin.diagnosa.*') }}" href="{{ route('admin.diagnosa.index') }}">
+                        <i class="bi bi-command"></i>
+                        <span>Diagnosa</span>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

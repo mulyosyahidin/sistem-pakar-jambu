@@ -1,6 +1,17 @@
 @extends('layouts.satoshi')
 @section('title', 'Admin Dashboard')
 
+@section('custom_head')
+    <style>
+        .icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+    </style>
+@endsection
+
 @section('content')
     <main class="container-fluid px-3 py-5 p-lg-6 p-xxl-8">
         <div class="mb-6 mb-xl-10">
@@ -75,114 +86,32 @@
                                 </div>
                             </div>
                             <div class="list-group list-group-flush">
-                                <div
-                                    class="list-group-item d-flex align-items-center justify-content-between gap-6">
-                                    <div class="d-flex align-items-center gap-3">
-                                        <div
-                                            class="icon icon-shape rounded-circle icon-sm flex-none w-rem-10 h-rem-10 text-sm bg-primary bg-opacity-25 text-primary">
-                                            <i class="bi bi-send-fill"></i></div>
-                                        <div class=""><span
-                                                class="d-block text-heading text-sm fw-semibold">Bitcoin </span><span
-                                                class="d-none d-sm-block text-muted text-xs">2 days ago</span>
-                                        </div>
+                                @forelse($diagnosaTerbaru as $item)
+                                    <div class="list-group-item d-flex justify-content-between gap-6">
+                                        <a href="{{ route('admin.diagnosa.show', $item) }}">
+                                            <div class="d-flex justify-content-start gap-3">
+                                                <div
+                                                    class="icon icon-shape rounded-circle icon-sm flex-none w-rem-10 h-rem-10 text-sm bg-primary bg-opacity-25 text-primary">
+                                                    @if($item->hama->foto)
+                                                        <img src="{{ asset($item->hama->foto) }}" alt="">
+                                                    @else
+                                                        <i class="bi bi-command"></i>
+                                                    @endif
+                                                </div>
+                                                <div class="">
+                                                <span
+                                                    class="d-block text-heading text-sm fw-semibold">{{ $item->hama->nama }}</span>
+                                                    <span
+                                                        class="d-none d-sm-block text-muted text-xs">{{ $item->created_at->translatedFormat('d M Y') }}</span>
+                                                </div>
+                                            </div>
+                                        </a>
                                     </div>
-                                    <div class="d-none d-md-block text-sm">0xd029384sd343fd...eq23</div>
-                                    <div class="d-none d-md-block"><span
-                                            class="badge bg-body-secondary text-warning">Pending</span></div>
-                                    <div class="text-end"><span
-                                            class="d-block text-heading text-sm fw-bold">+0.2948 BTC </span><span
-                                            class="d-block text-muted text-xs">+$10,930.90</span></div>
-                                </div>
-                                <div
-                                    class="list-group-item d-flex align-items-center justify-content-between gap-6">
-                                    <div class="d-flex align-items-center gap-3">
-                                        <div
-                                            class="icon icon-shape rounded-circle icon-sm flex-none w-rem-10 h-rem-10 text-sm bg-primary bg-opacity-25 text-primary">
-                                            <i class="bi bi-send-fill"></i></div>
-                                        <div class=""><span
-                                                class="d-block text-heading text-sm fw-semibold">Cardano </span><span
-                                                class="d-none d-sm-block text-muted text-xs">2 days ago</span>
-                                        </div>
+                                @empty
+                                    <div class="list-group-item text-center">
+                                        Tidak ada data
                                     </div>
-                                    <div class="d-none d-md-block text-sm">0xd029384sd343fd...eq23</div>
-                                    <div class="d-none d-md-block"><span
-                                            class="badge bg-body-secondary text-danger">Canceled</span></div>
-                                    <div class="text-end"><span
-                                            class="d-block text-heading text-sm fw-bold">+0.2948 BTC </span><span
-                                            class="d-block text-muted text-xs">+$10,930.90</span></div>
-                                </div>
-                                <div
-                                    class="list-group-item d-flex align-items-center justify-content-between gap-6">
-                                    <div class="d-flex align-items-center gap-3">
-                                        <div
-                                            class="icon icon-shape rounded-circle icon-sm flex-none w-rem-10 h-rem-10 text-sm bg-primary bg-opacity-25 text-primary">
-                                            <i class="bi bi-send-fill"></i></div>
-                                        <div class=""><span
-                                                class="d-block text-heading text-sm fw-semibold">Binance </span><span
-                                                class="d-none d-sm-block text-muted text-xs">2 days ago</span>
-                                        </div>
-                                    </div>
-                                    <div class="d-none d-md-block text-sm">0xd029384sd343fd...eq23</div>
-                                    <div class="d-none d-md-block"><span
-                                            class="badge bg-body-secondary text-success">Successful</span></div>
-                                    <div class="text-end"><span
-                                            class="d-block text-heading text-sm fw-bold">+0.2948 BTC </span><span
-                                            class="d-block text-muted text-xs">+$10,930.90</span></div>
-                                </div>
-                                <div
-                                    class="list-group-item d-flex align-items-center justify-content-between gap-6">
-                                    <div class="d-flex align-items-center gap-3">
-                                        <div
-                                            class="icon icon-shape rounded-circle icon-sm flex-none w-rem-10 h-rem-10 text-sm bg-primary bg-opacity-25 text-primary">
-                                            <i class="bi bi-send-fill"></i></div>
-                                        <div class=""><span
-                                                class="d-block text-heading text-sm fw-semibold">Bitcoin </span><span
-                                                class="d-none d-sm-block text-muted text-xs">2 days ago</span>
-                                        </div>
-                                    </div>
-                                    <div class="d-none d-md-block text-sm">0xd029384sd343fd...eq23</div>
-                                    <div class="d-none d-md-block"><span
-                                            class="badge bg-body-secondary text-warning">Pending</span></div>
-                                    <div class="text-end"><span
-                                            class="d-block text-heading text-sm fw-bold">+0.2948 BTC </span><span
-                                            class="d-block text-muted text-xs">+$10,930.90</span></div>
-                                </div>
-                                <div
-                                    class="list-group-item d-flex align-items-center justify-content-between gap-6">
-                                    <div class="d-flex align-items-center gap-3">
-                                        <div
-                                            class="icon icon-shape rounded-circle icon-sm flex-none w-rem-10 h-rem-10 text-sm bg-primary bg-opacity-25 text-primary">
-                                            <i class="bi bi-send-fill"></i></div>
-                                        <div class=""><span
-                                                class="d-block text-heading text-sm fw-semibold">Bitcoin </span><span
-                                                class="d-none d-sm-block text-muted text-xs">2 days ago</span>
-                                        </div>
-                                    </div>
-                                    <div class="d-none d-md-block text-sm">0xd029384sd343fd...eq23</div>
-                                    <div class="d-none d-md-block"><span
-                                            class="badge bg-body-secondary text-danger">Canceled</span></div>
-                                    <div class="text-end"><span
-                                            class="d-block text-heading text-sm fw-bold">+0.2948 BTC </span><span
-                                            class="d-block text-muted text-xs">+$10,930.90</span></div>
-                                </div>
-                                <div
-                                    class="list-group-item d-flex align-items-center justify-content-between gap-6">
-                                    <div class="d-flex align-items-center gap-3">
-                                        <div
-                                            class="icon icon-shape rounded-circle icon-sm flex-none w-rem-10 h-rem-10 text-sm bg-primary bg-opacity-25 text-primary">
-                                            <i class="bi bi-send-fill"></i></div>
-                                        <div class=""><span
-                                                class="d-block text-heading text-sm fw-semibold">Bitcoin </span><span
-                                                class="d-none d-sm-block text-muted text-xs">2 days ago</span>
-                                        </div>
-                                    </div>
-                                    <div class="d-none d-md-block text-sm">0xd029384sd343fd...eq23</div>
-                                    <div class="d-none d-md-block"><span
-                                            class="badge bg-body-secondary text-success">Successful</span></div>
-                                    <div class="text-end"><span
-                                            class="d-block text-heading text-sm fw-bold">+0.2948 BTC </span><span
-                                            class="d-block text-muted text-xs">+$10,930.90</span></div>
-                                </div>
+                                @endforelse
                             </div>
                         </div>
                     </div>
@@ -191,3 +120,16 @@
         </div>
     </main>
 @endsection
+
+@push('custom_js')
+    <script>
+        const dataDiagnosa = [
+            @foreach($diagnosa7HariTerakhir as $item)
+                {
+                    x: '{{ $item['tanggal'] }}',
+                    y: {{ $item['jumlah'] }}
+                },
+            @endforeach
+        ];
+    </script>
+@endpush

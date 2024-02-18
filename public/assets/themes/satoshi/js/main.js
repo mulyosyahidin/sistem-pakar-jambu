@@ -20622,28 +20622,17 @@
                     colors: i,
                     stroke: {width: 3, curve: "smooth", lineCap: "butt", dashArray: [0, 3]},
                     series: [{
-                        name: "Price",
-                        data: a.map(e => ({x: new Date(e.date), y: [e.open, e.open, e.close, e.close]}))
+                        name: "Diagnosa",
+                        data: dataDiagnosa
                     }],
                     markers: {size: 0},
                     xaxis: {
-                        type: "datetime",
                         tooltip: {enabled: !1},
                         axisBorder: {show: !1},
                         axisTicks: {show: !0},
-                        tooltip: {
-                            enabled: !0, formatter: function (e) {
-                                return oA(e).format("MMM YYYY")
-                            }
-                        },
-                        labels: {
-                            show: !0, showDuplicates: !1, formatter: function (e) {
-                                return oA(e).format("MMM YYYY")
-                            }
-                        }
                     },
                     yaxis: [{
-                        seriesName: "Price",
+                        seriesName: "Diagnosa",
                         axisBorder: {show: !1},
                         axisTicks: {show: !0},
                         labels: {
@@ -20659,13 +20648,6 @@
                     legend: {show: !1},
                     grid: {borderColor: t.colors().border.color, strokeDashArray: 3},
                     dataLabels: {enabled: !1},
-                    tooltip: {
-                        x: {
-                            formatter: function (e) {
-                                return oA(e).format("MMM DD, YYYY")
-                            }
-                        }
-                    }
                 }, s = e.dataset.height;// Inject dynamic properties
                 n.colors = i, n.chart.height = s || 350,// Create chart
                     new nq(e, n).render()

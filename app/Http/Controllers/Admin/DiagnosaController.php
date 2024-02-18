@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Hama;
 use App\Models\Diagnosa;
+use App\Models\Hama;
 use App\Services\DiagnosaService;
+use Illuminate\Http\Request;
 
 class DiagnosaController extends Controller
 {
@@ -13,7 +14,7 @@ class DiagnosaController extends Controller
     {
         $data = Diagnosa::where('user_id', '!=', auth()->id())->with('user', 'hama')->latest()->get();
 
-        return view('diagnosa.index', compact('data'));
+        return view('admin.diagnosa.index', compact('data'));
     }
 
     public function show(Diagnosa $diagnosa)
@@ -24,8 +25,6 @@ class DiagnosaController extends Controller
         $diagnosaService = new DiagnosaService($diagnosa);
         $dataHama = Hama::with('gejala')->orderBy('kode')->get();
 
-//        dd($diagnosaService->hitung());
-
-        return view('diagnosa.show', compact('diagnosa', 'dataHama', 'diagnosaService'));
+        return view('admin.diagnosa.show', compact('diagnosa', 'dataHama', 'diagnosaService'));
     }
 }

@@ -99,7 +99,9 @@
                                     </a>
                                 </div>
                             @empty
-
+                                <div class="list-group-item text-center">
+                                    Tidak ada data
+                                </div>
                             @endforelse
                         </div>
                     </div>
