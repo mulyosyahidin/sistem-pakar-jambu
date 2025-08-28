@@ -52,6 +52,13 @@
                     </a>
                 </li>
 
+                <!-- Master Data Group -->
+                <li class="nav-item my-2 mt-4">
+                    <div class="navbar-heading text-muted fw-bold text-xs px-3">
+                        Master Data
+                    </div>
+                </li>
+
                 <li class="nav-item my-1">
                     <a class="nav-link d-flex align-items-center rounded-pill {{ activeClass('admin.hama.*') }}" href="{{ route('admin.hama.index') }}">
                         <i class="bi bi-bag-x-fill"></i>
@@ -73,11 +80,25 @@
                     </a>
                 </li>
 
+                <!-- Pakar Group -->
+                <li class="nav-item my-2 mt-5">
+                    <div class="navbar-heading text-muted fw-bold text-xs px-3">
+                        Pakar
+                    </div>
+                </li>
+
                 <li class="nav-item my-1">
                     <a class="nav-link d-flex align-items-center rounded-pill {{ activeClass('admin.basis-pengetahuan.*') }}" href="{{ route('admin.basis-pengetahuan.index') }}">
                         <i class="bi bi-bookmark-fill"></i>
                         <span>Basis Pengetahuan</span>
                     </a>
+                </li>
+
+                <!-- User Group -->
+                <li class="nav-item my-2 mt-5">
+                    <div class="navbar-heading text-muted fw-bold text-xs px-3">
+                        User
+                    </div>
                 </li>
 
                 <li class="nav-item my-1">
@@ -89,7 +110,7 @@
 
                 <li class="nav-item my-1">
                     <a class="nav-link d-flex align-items-center rounded-pill {{ activeClass('admin.diagnosa.*') }}" href="{{ route('admin.diagnosa.index') }}">
-                        <i class="bi bi-command"></i>
+                        <i class="bi bi-clipboard2-pulse"></i>
                         <span>Diagnosa</span>
                     </a>
                 </li>
