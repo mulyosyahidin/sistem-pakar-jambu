@@ -69,13 +69,12 @@ class SolusiController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \App\Models\Solusi $solusi
      * @return Response
      */
     public function update(Request $request, Solusi $solusi)
     {
         $request->validate([
-            'kode' => 'required|string|max:4|unique:solusi,kode,' . $solusi->id,
+            'kode' => 'required|string|max:4|unique:solusi,kode,'.$solusi->id,
             'solusi' => 'required|string',
         ]);
 
@@ -89,7 +88,6 @@ class SolusiController extends Controller
     /**
      * Delete the specified resource in storage.
      *
-     * @param \App\Models\Solusi $solusi
      * @return Response
      */
     public function destroy(Solusi $solusi)

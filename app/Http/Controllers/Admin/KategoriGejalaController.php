@@ -56,7 +56,7 @@ class KategoriGejalaController extends Controller
     public function update(Request $request, Kategori_gejala $kategori_gejala)
     {
         $request->validate([
-            'nama' => 'required|string|max:255|unique:kategori_gejala,nama,' . $kategori_gejala->id,
+            'nama' => 'required|string|max:255|unique:kategori_gejala,nama,'.$kategori_gejala->id,
         ]);
 
         $kategori_gejala->update($request->all());

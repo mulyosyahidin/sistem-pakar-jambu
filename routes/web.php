@@ -2,10 +2,10 @@
 
 use App\Http\Controllers\Admin\BasisPengetahuanController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\DiagnosaController as AdminDiagnosaController;
 use App\Http\Controllers\Admin\GejalaController;
 use App\Http\Controllers\Admin\HamaController;
 use App\Http\Controllers\Admin\KategoriGejalaController;
-use App\Http\Controllers\Admin\DiagnosaController as AdminDiagnosaController;
 use App\Http\Controllers\Admin\SolusiController;
 use App\Http\Controllers\Admin\SolusiHamaController;
 use App\Http\Controllers\Admin\UserController;

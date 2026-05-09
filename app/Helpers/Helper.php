@@ -2,14 +2,9 @@
 
 use App\Enums\UserRole;
 
-if (!function_exists('activeClass')) {
+if (! function_exists('activeClass')) {
     /**
      * Return active class if current route is equal to given route
-     *
-     * @param array|string $routes
-     * @param string $class
-     * @param array $queries
-     * @return string
      */
     function activeClass(array|string $routes = [], string $class = 'active', array $queries = []): string
     {
@@ -36,12 +31,9 @@ if (!function_exists('activeClass')) {
     }
 }
 
-if (!function_exists('getDashboardUrl')) {
+if (! function_exists('getDashboardUrl')) {
     /**
      * Get dashboard url based on user role
-     *
-     * @param $role
-     * @return string
      */
     function getDashboardUrl($role = null): string
     {
@@ -54,13 +46,10 @@ if (!function_exists('getDashboardUrl')) {
     }
 }
 
-if (!function_exists('getSidebarFileName')) {
+if (! function_exists('getSidebarFileName')) {
 
     /**
      * Get sidebar file name based on user role
-     *
-     * @param $role
-     * @return string
      */
     function getSidebarFileName($role = null): string
     {
@@ -73,12 +62,9 @@ if (!function_exists('getSidebarFileName')) {
     }
 }
 
-if ( !function_exists('getYoutubeVideoId')) {
+if (! function_exists('getYoutubeVideoId')) {
     /**
      * Get youtube video id from youtube url
-     *
-     * @param $url
-     * @return string
      */
     function getYoutubeVideId($url): string
     {
@@ -86,11 +72,11 @@ if ( !function_exists('getYoutubeVideoId')) {
 
         if (preg_match('/youtube\.com\/watch\?v=([^\&\?\/]+)/', $url, $id)) {
             $videoId = $id[1];
-        } else if (preg_match('/youtube\.com\/embed\/([^\&\?\/]+)/', $url, $id)) {
+        } elseif (preg_match('/youtube\.com\/embed\/([^\&\?\/]+)/', $url, $id)) {
             $videoId = $id[1];
-        } else if (preg_match('/youtube\.com\/v\/([^\&\?\/]+)/', $url, $id)) {
+        } elseif (preg_match('/youtube\.com\/v\/([^\&\?\/]+)/', $url, $id)) {
             $videoId = $id[1];
-        } else if (preg_match('/youtu\.be\/([^\&\?\/]+)/', $url, $id)) {
+        } elseif (preg_match('/youtu\.be\/([^\&\?\/]+)/', $url, $id)) {
             $videoId = $id[1];
         }
 

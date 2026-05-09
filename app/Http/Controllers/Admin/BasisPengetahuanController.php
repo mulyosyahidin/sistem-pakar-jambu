@@ -25,7 +25,6 @@ class BasisPengetahuanController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param \App\Models\Hama $hama
      * @return \Illuminate\Http\Response
      */
     public function edit(Hama $hama)

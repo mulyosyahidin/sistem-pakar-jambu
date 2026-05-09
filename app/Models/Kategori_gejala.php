@@ -35,8 +35,6 @@ class Kategori_gejala extends Model
 
     /**
      * Relasi one-to-many dengan tabel gejala
-     *
-     * @return HasMany
      */
     public function gejala(): HasMany
     {

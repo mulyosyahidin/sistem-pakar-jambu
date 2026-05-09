@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Diagnosa;
 use App\Models\Gejala;
 use App\Models\Hama;
-use App\Models\Diagnosa;
 use App\Models\Solusi;
 use App\Models\User;
 use Carbon\Carbon;

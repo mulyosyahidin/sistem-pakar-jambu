@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Diagnosa;
 use App\Models\Hama;
 use App\Services\DiagnosaService;
-use Illuminate\Http\Request;
 
 class DiagnosaController extends Controller
 {

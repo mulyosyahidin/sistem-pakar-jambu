@@ -2,16 +2,14 @@
 
 namespace App\Services;
 
-use App\Models\Gejala;
 use App\Models\Diagnosa;
+use App\Models\Gejala;
 use App\Models\Hama;
 
 class DiagnosaService
 {
     /**
      * Instance dari model Diagnosa
-     *
-     * @var Diagnosa
      */
     protected Diagnosa $diagnosa;
 
@@ -24,8 +22,6 @@ class DiagnosaService
 
     /**
      * Membuat instance baru dari DiagnosaService
-     *
-     * @param Diagnosa $diagnosa
      */
     public function __construct(Diagnosa $diagnosa)
     {
@@ -44,8 +40,6 @@ class DiagnosaService
      * 4. Menghitung nilai CF (Certainty Factor)
      * 5. Menghitung nilai CFR (Certainty Factor Result)
      * 6. Menghitung nilai CFR terkombinasi
-     *
-     * @return array
      */
     public function hitung(): array
     {
@@ -105,7 +99,6 @@ class DiagnosaService
             $gejalaHama = collect($rule)->map(function ($item) use ($gejalaHama) {
                 return $gejalaHama->where('kode', $item['gejala']->kode)->first();
             });
-
 
             // total variabel atau gejala yang dimiliki oleh hama
             $totalVariabel = count($gejalaHama);
@@ -263,8 +256,6 @@ class DiagnosaService
 
     /**
      * Mengambil hama tertinggi
-     *
-     * @return array
      */
     public function hamaTertinggi(): array
     {
@@ -277,8 +268,6 @@ class DiagnosaService
 
     /**
      * Membentuk matrix nilai CF
-     *
-     * @return array
      */
     public function matrixNilaiCf(): array
     {

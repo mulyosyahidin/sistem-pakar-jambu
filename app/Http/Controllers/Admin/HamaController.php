@@ -78,8 +78,8 @@ class HamaController extends Controller
     public function update(Request $request, Hama $hama)
     {
         $request->validate([
-            'kode' => 'required|string|max:4|unique:hama,kode,' . $hama->id,
-            'nama' => 'required|string|unique:hama,nama,' . $hama->id,
+            'kode' => 'required|string|max:4|unique:hama,kode,'.$hama->id,
+            'nama' => 'required|string|unique:hama,nama,'.$hama->id,
             'foto' => 'nullable|image|max:2048',
         ]);
 

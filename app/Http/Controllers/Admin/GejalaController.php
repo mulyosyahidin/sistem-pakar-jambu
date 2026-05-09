@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\File;
 use App\Models\Gejala;
 use App\Models\Kategori_gejala;
 use App\Services\FileService;
@@ -85,8 +84,8 @@ class GejalaController extends Controller
     public function update(Request $request, Gejala $gejala)
     {
         $request->validate([
-            'kode' => 'required|string|max:4|unique:gejala,kode,' . $gejala->id,
-            'nama' => 'required|string|unique:gejala,nama,' . $gejala->id,
+            'kode' => 'required|string|max:4|unique:gejala,kode,'.$gejala->id,
+            'nama' => 'required|string|unique:gejala,nama,'.$gejala->id,
             'bobot' => 'nullable|numeric',
             'id_kategori' => 'nullable|exists:kategori_gejala,id',
             'media_type' => 'nullable|in:image,video',
@@ -114,7 +113,7 @@ class GejalaController extends Controller
             ]);
         }
 
-        if ($request->media_type == 'image')  {
+        if ($request->media_type == 'image') {
             $file = FileService::upload('media_file');
 
             if ($file) {

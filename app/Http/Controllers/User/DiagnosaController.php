@@ -61,7 +61,7 @@ class DiagnosaController extends Controller
 
         return redirect()
             ->route('user.diagnosa.show', $diagnosa->id)
-            ->withSuccess('Berhasil melakukan diagnosa');;
+            ->withSuccess('Berhasil melakukan diagnosa');
     }
 
     public function show(Diagnosa $diagnosa)

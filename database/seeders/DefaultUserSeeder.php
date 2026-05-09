@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Enums\UserRole;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DefaultUserSeeder extends Seeder

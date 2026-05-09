@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Diagnosa extends Model
 {
@@ -32,8 +31,6 @@ class Diagnosa extends Model
 
     /**
      * Relasi many-to-many ke model Gejala
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function gejala(): BelongsToMany
     {
@@ -42,8 +39,6 @@ class Diagnosa extends Model
 
     /**
      * User yang memiliki diagnosa
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function user(): BelongsTo
     {
@@ -52,8 +47,6 @@ class Diagnosa extends Model
 
     /**
      * Hama yang dihasilkan dari diagnosa
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function hama(): BelongsTo
     {

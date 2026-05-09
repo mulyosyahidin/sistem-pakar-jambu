@@ -6,9 +6,6 @@ class FileService
 {
     /**
      * Upload file
-     *
-     * @param $fieldName
-     * @return array|false
      */
     public static function upload($fieldName = null): false|array
     {
@@ -19,14 +16,14 @@ class FileService
                 $year = date('Y');
                 $month = date('m');
 
-                $fileName = time() . '_' . $file->getClientOriginalName();
+                $fileName = time().'_'.$file->getClientOriginalName();
 
                 $path = "{$year}/{$month}";
                 $file->storeAs($path, $fileName, 'uploads');
 
                 return [
                     'file_name' => $fileName,
-                    'file_path' => 'uploads/' . $path . '/' . $fileName,
+                    'file_path' => 'uploads/'.$path.'/'.$fileName,
                     'file_size' => $file->getSize(),
                     'file_mime_type' => $file->getMimeType(),
                 ];
@@ -38,9 +35,6 @@ class FileService
 
     /**
      * Delete file
-     *
-     * @param $filePath
-     * @return bool
      */
     public static function delete($filePath): bool
     {

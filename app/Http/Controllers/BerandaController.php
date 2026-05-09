@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Enums\UserRole;
-use Illuminate\Http\Request;
 
 class BerandaController extends Controller
 {

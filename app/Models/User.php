@@ -49,8 +49,6 @@ class User extends Authenticatable
 
     /**
      * Get the diagnosa for the user.
-     *
-     * @return HasMany
      */
     public function diagnosa(): HasMany
     {
@@ -63,7 +61,7 @@ class User extends Authenticatable
             get: function () {
                 return $this->profile_picture
                     ? asset($this->profile_picture)
-                    : 'https://ui-avatars.com/api/?name=' . urlencode($this->name) . '&color=7F9CF5&background=EBF4FF';
+                    : 'https://ui-avatars.com/api/?name='.urlencode($this->name).'&color=7F9CF5&background=EBF4FF';
             }
         );
     }
