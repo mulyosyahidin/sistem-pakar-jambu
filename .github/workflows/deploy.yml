@@ -79,13 +79,13 @@ jobs:
         uses: appleboy/ssh-action@v1.2.0
         env:
           GHCR_PAT: ${{ secrets.GHCR_PAT }}
-          IMAGE_SHA: ${{ github.sha }}
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          DB_ROOT_PASSWORD: ${{ secrets.DB_ROOT_PASSWORD }}
         with:
           host: ${{ vars.HOST }}
           username: ${{ vars.USERNAME }}
           key: ${{ secrets.SSH_KEY }}
-          envs: GHCR_PAT,IMAGE_SHA,DB_PASSWORD
+          envs: GHCR_PAT,IMAGE_SHA,DB_PASSWORD,DB_ROOT_PASSWORD
           script: |
             cd ${{ vars.APP_PATH }}
 
@@ -119,6 +119,7 @@ jobs:
             DB_DATABASE=${{ vars.DB_DATABASE }}
             DB_USERNAME=${{ vars.DB_USERNAME }}
             DB_PASSWORD=${DB_PASSWORD}
+            DB_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
 
             # Session & Cache
             SESSION_DRIVER=database
