@@ -21,7 +21,7 @@ RUN apk add --no-cache \
     nodejs \
     npm \
     mariadb-client \
-    && npm install -g pnpm \
+    && npm install -g pnpm@9 \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install \
     pdo_mysql \

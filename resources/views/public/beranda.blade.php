@@ -20,6 +20,7 @@
                                 @endif
                             @else
                                 <a href="{{ route('login') }}" class="btn-get-started">Login</a>
+                                <a href="{{ route('register') }}" class="btn-get-started">Daftar</a>
                             @endauth
                         </div>
                     </div>

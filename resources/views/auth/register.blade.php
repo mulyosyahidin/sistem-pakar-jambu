@@ -38,7 +38,7 @@
             @endif
         </div>
         <div class="mt-auto ps-16 ps-xl-20">
-            <img src="{{ asset('assets/themes/satoshi/img/marketing/shot-1.png') }}"
+            <img src="{{ asset('assets/images/auth-bg.png') }}"
                  class="img-fluid rounded-top-start-4" alt="...">
         </div>
     </div>

@@ -67,6 +67,30 @@
             </div>
         </div>
 
+        <div class="card border-0 bg-primary bg-opacity-10 mb-6">
+            <div class="card-body p-4 p-lg-5">
+                <div class="row align-items-center g-4">
+                    <div class="col-lg">
+                        <h4 class="mb-2 text-primary">
+                            Mulai Diagnosa Hama dan Penyakit Jambu
+                        </h4>
+
+                        <p class="text-muted mb-0">
+                            Lakukan diagnosa untuk mengetahui kemungkinan hama atau penyakit berdasarkan
+                            gejala yang ditemukan pada tanaman jambu Anda.
+                        </p>
+                    </div>
+
+                    <div class="col-lg-auto mt-4">
+                        <a href="{{ route('user.diagnosa.create') }}" class="btn btn-primary">
+                            <i class="bi bi-search me-2"></i>
+                            Lakukan Diagnosa
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="row g-3 g-xxl-6">
             <div class="col">
                 <div class="card">
@@ -83,7 +107,7 @@
                                         <div class="d-flex justify-content-start gap-3">
                                             <div
                                                 class="icon icon-shape rounded-circle icon-sm flex-none w-rem-10 h-rem-10 text-sm bg-primary bg-opacity-25 text-primary">
-                                                @if($item->hama->foto)
+                                                @if ($item->hama->foto)
                                                     <img src="{{ asset($item->hama->foto) }}" alt="">
                                                 @else
                                                     <i class="bi bi-command"></i>
@@ -114,12 +138,12 @@
 @push('custom_js')
     <script>
         const chartCategories = [
-            @foreach($diagnosa7HariTerakhir as $item)
+            @foreach ($diagnosa7HariTerakhir as $item)
                 '{{ $item['tanggal'] }}',
             @endforeach
         ];
         const chartData = [
-            @foreach($diagnosa7HariTerakhir as $item)
+            @foreach ($diagnosa7HariTerakhir as $item)
                 {{ $item['jumlah'] }},
             @endforeach
         ];
