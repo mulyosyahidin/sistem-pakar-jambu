@@ -20,7 +20,7 @@ RUN apk add --no-cache \
     make \
     nodejs \
     npm \
-    mariadb-client \
+    mysql-client \
     && npm install -g pnpm@9 \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install \
@@ -85,7 +85,7 @@ RUN apk add --no-cache \
     fcgi \
     zip \
     unzip \
-    mariadb-client
+    mysql-client
 
 # Copy health check script
 RUN curl -o /usr/local/bin/php-fpm-healthcheck \
