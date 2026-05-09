@@ -12,12 +12,18 @@ class DefaultUserSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\User::factory()->create([
-            'name' => 'Admin',
-            'email' => 'admin@local.test',
-            'password' => bcrypt('password'),
-            'role' => UserRole::ADMIN->value,
-            'email_verified_at' => now(),
-        ]);
+        $defaultEmail = 'admin@jambu.app';
+
+        $user = \App\Models\User::where('email', $defaultEmail)->first();
+
+        if (!$user) {
+            \App\Models\User::create([
+                'name' => 'Admin',
+                'email' => $defaultEmail,
+                'password' => bcrypt('password'),
+                'role' => UserRole::ADMIN->value,
+                'email_verified_at' => now(),
+            ]);
+        }
     }
 }
