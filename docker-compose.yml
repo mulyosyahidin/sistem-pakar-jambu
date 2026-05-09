@@ -65,11 +65,13 @@ services:
     image: mariadb:11
     container_name: sistem-pakar-jambu-db
     restart: unless-stopped
+    env_file:
+      - .env
     environment:
-      MARIADB_DATABASE: ${DB_DATABASE}
-      MARIADB_USER: ${DB_USERNAME}
-      MARIADB_PASSWORD: ${DB_PASSWORD}
-      MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      - MARIADB_DATABASE=${DB_DATABASE}
+      - MARIADB_USER=${DB_USERNAME}
+      - MARIADB_PASSWORD=${DB_PASSWORD}
+      - MARIADB_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
     volumes:
       - db-data:/var/lib/mysql
       - ./docker/production/db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
