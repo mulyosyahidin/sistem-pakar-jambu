@@ -80,13 +80,14 @@ jobs:
         env:
           GHCR_PAT: ${{ secrets.GHCR_PAT }}
           IMAGE_SHA: ${{ github.sha }}
+          APP_KEY: ${{ secrets.APP_KEY }}
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
           DB_ROOT_PASSWORD: ${{ secrets.DB_ROOT_PASSWORD }}
         with:
           host: ${{ vars.HOST }}
           username: ${{ vars.USERNAME }}
           key: ${{ secrets.SSH_KEY }}
-          envs: GHCR_PAT,IMAGE_SHA,DB_PASSWORD,DB_ROOT_PASSWORD
+          envs: GHCR_PAT,IMAGE_SHA,APP_KEY,DB_PASSWORD,DB_ROOT_PASSWORD
           script: |
             cd ${{ vars.APP_PATH }}
 
@@ -95,7 +96,7 @@ jobs:
             # App
             APP_NAME=${{ vars.APP_NAME }}
             APP_ENV=production
-            APP_KEY=
+            APP_KEY=${APP_KEY}
             APP_DEBUG=false
             APP_URL=${{ vars.APP_URL }}
             APP_DOMAIN=${{ vars.APP_DOMAIN }}

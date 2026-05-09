@@ -15,15 +15,6 @@ rm -rf /var/www/html/storage-init
 
 # Run tasks only for the main app container
 if [ "$1" = "php-fpm" ]; then
-
-  # Generate APP_KEY if missing
-  if ! grep -q "^APP_KEY=base64:" .env; then
-    echo "Generating APP_KEY..."
-    php artisan key:generate --force
-  else
-    echo "APP_KEY already exists."
-  fi
-
   # Run Laravel migrations
   echo "Running migrations..."
   php artisan migrate --force
