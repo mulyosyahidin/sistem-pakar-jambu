@@ -125,19 +125,19 @@
                         <div class="table-responsive">
                             <table class="table table-condensed table-bordered table-hover">
                                 <tr>
-                                    <th>Nama Hama</th>
+                                    <th class="bg-body-tertiary text-heading">Nama Hama</th>
                                     <td><b>{{ $data['hama']->nama }}</b></td>
                                 </tr>
                                 <tr>
-                                    <th>Kode</th>
+                                    <th class="bg-body-tertiary text-heading">Kode</th>
                                     <td><b>{{ $data['hama']->kode }}</b></td>
                                 </tr>
                                 <tr>
-                                    <th>Nilai</th>
+                                    <th class="bg-body-tertiary text-heading">Nilai</th>
                                     <td><b>{{ $data['cf_kombinasi']['result'] }}</b></td>
                                 </tr>
                                 <tr>
-                                    <th>Persentase</th>
+                                    <th class="bg-body-tertiary text-heading">Persentase</th>
                                     <td><b>{{ $data['cf_kombinasi']['persentase'] }}%</b></td>
                                 </tr>
                             </table>

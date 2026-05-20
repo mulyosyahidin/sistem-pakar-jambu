@@ -52,6 +52,11 @@
             background-color: #f9fafc;
         }
 
+        [data-bs-theme="dark"] .table-bordered th {
+            background-color: #172033;
+            color: #f8fafc;
+        }
+
         .table-bordered thead tr th {
             border-bottom: 1px solid #e3e7f0 !important;
         }

@@ -19,7 +19,7 @@
                     <th scope="col">Tanggal</th>
                     <th scope="col">Hasil Diagnosa</th>
                     <th scope="col">Persentase</th>
-                    <th></th>
+                    <th scope="col"></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -43,7 +43,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="4" class="text-center">Tidak ada data</td>
+                        <td colspan="6" class="text-center">Tidak ada data</td>
                     </tr>
                 @endforelse
                 </tbody>

@@ -61,7 +61,7 @@
                 <div class="mb-5">
                     <label class="form-label" for="email">Email</label>
                     <input type="email" class="form-control @error('email') is-invalid @enderror" id="email"
-                           name="email" value="{{ old('email') }}" required>
+                           name="email" value="{{ old('email') }}" tabindex="1" required>
 
                     @error('email')
                     <div class="invalid-feedback">
@@ -75,7 +75,7 @@
                         <a href="{{ route('password.request') }}" class="text-sm text-muted text-primary-hover text-underline">Lupa Password?</a>
                     </div>
                     <input type="password" name="password" class="form-control @error('password') is-invalid @enderror"
-                           id="password" autocomplete="current-password" required>
+                           id="password" autocomplete="current-password" tabindex="2" required>
 
                     @error('password')
                     <div class="invalid-feedback">

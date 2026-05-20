@@ -67,42 +67,44 @@
                          aria-labelledby="{{ $loop->iteration }}-tab">
                         <div class="row g-6">
                             @foreach($item['data'] as $data)
+                                @php
+                                    $hasMedia = filled($data->media_url);
+                                @endphp
                                 <div class="col-xl-3 col-md-3 col-sm-6">
                                     <div class="card">
-                                        <div class="position-relative group-item-invisible group-item-visible-hover">
-                                            @if($data->media_type == 'image')
-                                                <img
-                                                    src="{{ asset($data->media_url) }}"
-                                                    class="card-img-top" alt="{{ $data->name }}">
-                                            @elseif ($data->media_type == 'video')
-                                                <iframe width="100%" height="350"
-                                                        style="border-top-left-radius: 8px; border-top-right-radius: 8px;"
-                                                        src="https://www.youtube.com/embed/{{ getYoutubeVideId($data->media_url) }}"
-                                                        title="YouTube video player" frameborder="0"
-                                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                                        allowfullscreen></iframe>
-                                            @else
-                                                <img src="https://placehold.co/750x750/8655FA/FFF?text=No%20Media"
-                                                     alt="{{ $data->nama }}" class="card-img-top">
-                                            @endif
-                                            <div
-                                                class="group-item rounded-top d-flex flex-column p-4 position-absolute top-0 start-0 w-100 h-100 bg-dark bg-opacity-25">
-                                                @if($data->media_type == 'video')
-                                                    <div class="d-flex justify-content-end">
-                                                        <a href="{{ $data->media_url }}" target="_blank"
-                                                           class="btn btn-sm btn-square border-0 text-bg-dark bg-opacity-70 bg-opacity-100-hover">
-                                                            <i class="bi bi-box-arrow-up-right"></i>
+                                        @if($hasMedia)
+                                            <div class="position-relative group-item-invisible group-item-visible-hover">
+                                                @if($data->media_type == 'image')
+                                                    <img
+                                                        src="{{ asset($data->media_url) }}"
+                                                        class="card-img-top" alt="{{ $data->nama }}">
+                                                @elseif ($data->media_type == 'video')
+                                                    <iframe width="100%" height="350"
+                                                            style="border-top-left-radius: 8px; border-top-right-radius: 8px;"
+                                                            src="https://www.youtube.com/embed/{{ getYoutubeVideId($data->media_url) }}"
+                                                            title="YouTube video player" frameborder="0"
+                                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                                            allowfullscreen></iframe>
+                                                @endif
+                                                <div
+                                                    class="group-item rounded-top d-flex flex-column p-4 position-absolute top-0 start-0 w-100 h-100 bg-dark bg-opacity-25">
+                                                    @if($data->media_type == 'video')
+                                                        <div class="d-flex justify-content-end">
+                                                            <a href="{{ $data->media_url }}" target="_blank"
+                                                               class="btn btn-sm btn-square border-0 text-bg-dark bg-opacity-70 bg-opacity-100-hover">
+                                                                <i class="bi bi-box-arrow-up-right"></i>
+                                                            </a>
+                                                        </div>
+                                                    @endif
+
+                                                    <div class="text-center mt-auto">
+                                                        <a class="btn btn-sm btn-white w-100 btn-select" data-id="{{ $data->id }}">
+                                                            Pilih
                                                         </a>
                                                     </div>
-                                                @endif
-
-                                                <div class="text-center mt-auto">
-                                                    <a class="btn btn-sm btn-white w-100 btn-select" data-id="{{ $data->id }}">
-                                                       Pilih
-                                                    </a>
                                                 </div>
                                             </div>
-                                        </div>
+                                        @endif
                                         <div class="card-body p-3">
                                             <div class="d-flex align-items-center gap-2">
                                                 <span class="h6 text-sm">{{ $data->nama }}</span>
@@ -110,6 +112,11 @@
                                             @if($data->deskripsi)
                                                 <div class="text-sm text-muted my-1">{{ $data->deskripsi }}</div>
                                             @endif
+                                            @unless($hasMedia)
+                                                <a class="btn btn-sm btn-neutral w-100 mt-3 btn-select" data-id="{{ $data->id }}">
+                                                    Pilih
+                                                </a>
+                                            @endunless
                                         </div>
                                     </div>
                                 </div>
