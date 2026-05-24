@@ -5,7 +5,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta name="theme-color" content="#0f766e">
 
-    <title>Selamat Datang di Website Sistem Pakar Hama Tanaman Jambu</title>
+    <title>Selamat Datang di Website Sistem Pakar Hama Tanaman Jambu Kristal</title>
 
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/images/favicon/apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/images/favicon/favicon-32x32.png') }}">
@@ -52,7 +52,7 @@
         ],
         [
             'title' => 'Kenali gejala tanaman',
-            'description' => 'Kenali gejala yang muncul pada jambu Anda dengan memperhatikan ciri-ciri fisik yang nampak.',
+            'description' => 'Kenali gejala yang muncul pada jambu kristal Anda dengan memperhatikan ciri-ciri fisik yang nampak.',
         ],
         [
             'title' => 'Lakukan diagnosa',
@@ -70,7 +70,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.563.563 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
                     </svg>
                 </span>
-                <span class="text-lg font-bold tracking-tight text-guava-dark">Pakar Jambu</span>
+                <span class="text-lg font-bold tracking-tight text-guava-dark">Pakar Jambu Kristal</span>
             </a>
 
             <div class="flex items-center gap-2">
@@ -95,13 +95,13 @@
                 <div class="max-w-3xl">
                     <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-teal-200 bg-white/80 px-4 py-2 text-sm font-semibold text-guava-dark shadow-sm">
                         <span class="h-2 w-2 rounded-full bg-guava-fruit"></span>
-                        Sistem Pakar Diagnosa Hama Tanaman Jambu
+                        Sistem Pakar Diagnosa Hama Tanaman Jambu Kristal
                     </div>
                     <h1 class="text-4xl font-black leading-tight tracking-normal text-slate-950 sm:text-5xl lg:text-6xl">
                         Selamat Datang
                     </h1>
                     <p class="mt-6 max-w-2xl text-lg leading-8 text-slate-600 sm:text-xl">
-                        Sistem Pakar Diagnosa Hama Tanaman Jambu Berbasis Web Menggunakan Metode VCIRS
+                        Sistem Pakar Diagnosa Hama Tanaman Jambu Kristal Berbasis Web Menggunakan Metode VCIRS
                     </p>
 
                     <div class="mt-9 flex flex-wrap gap-3">
@@ -135,7 +135,7 @@
                         <img src="{{ asset('assets/images/new-hero.png') }}" class="h-auto w-full rounded-[1.5rem] object-cover" alt="Ilustrasi tanaman jambu untuk sistem pakar diagnosa hama">
                         <div class="absolute -bottom-6 left-6 right-6 rounded-2xl border border-white/70 bg-white/90 p-4 shadow-xl shadow-teal-900/10 backdrop-blur">
                             <p class="text-sm font-semibold text-guava-dark">Diagnosa berbasis gejala</p>
-                            <p class="mt-1 text-sm text-slate-500">Bantu identifikasi hama tanaman jambu secara lebih terarah.</p>
+                            <p class="mt-1 text-sm text-slate-500">Bantu identifikasi hama tanaman jambu kristal secara lebih terarah.</p>
                         </div>
                     </div>
                 </div>
@@ -165,7 +165,7 @@
                 <div class="max-w-3xl">
                     <p class="text-sm font-bold uppercase tracking-[0.18em] text-guava-leaf">Cara menggunakan</p>
                     <h2 class="mt-3 text-3xl font-black leading-tight tracking-normal text-slate-950 sm:text-4xl">
-                        3 langkah mudah menggunakan sistem pakar diagnosa hama tanaman jambu
+                        3 langkah mudah menggunakan sistem pakar diagnosa hama tanaman jambu kristal
                     </h2>
                 </div>
 
@@ -188,7 +188,7 @@
 
     <footer class="border-t border-slate-200 bg-white px-5 py-8 text-center sm:px-6 lg:px-8">
         <p class="text-sm text-slate-500">
-            &copy; 2024 <strong class="font-semibold text-guava-dark">Sistem Pakar Hama Tanaman Jambu</strong>.
+            &copy; 2024 <strong class="font-semibold text-guava-dark">Sistem Pakar Hama Tanaman Jambu Kristal</strong>.
         </p>
     </footer>
 </div>
